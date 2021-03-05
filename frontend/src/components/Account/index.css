@@ -1,0 +1,11 @@
+.account {
+    border: yellow solid 2px;
+   
+}
+
+.count {
+    position: absolute;
+    z-index: 2;
+    margin-top: -300px;
+    
+}
