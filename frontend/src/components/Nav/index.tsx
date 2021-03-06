@@ -40,17 +40,15 @@ const Nav = () => {
                         </SubMenu>
 
                       <Menu.Item key="home">
-                          <Link to="/"> Accueil </Link>
+                          <Link to="/home"> Accueil </Link>
                         </Menu.Item>
 
-                       
-
-                        <Menu.Item key="today">
-                         <Link to={`/${location}/aujourdhui`}> Aujourd'hui</Link >
+                        <Menu.Item key="cocktailA">
+                         <Link to='/cocktails_alcoholic'> Cocktail</Link >
                         </Menu.Item>
 
-                        <Menu.Item key="week">
-                         <Link to={`/${location}/semaine`}> La semaine</Link >
+                        <Menu.Item key="cocktailNA">
+                         <Link to='/cocktails_non_alcoholic'> Cocktail sans Alcool</Link >
                         </Menu.Item>
 
                        

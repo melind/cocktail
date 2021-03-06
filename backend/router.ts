@@ -10,7 +10,7 @@ import authController from './controllers/authController';
 import resetController from './controllers/resetController';
 import accountController from './controllers/accountController';
 import deleteController from './controllers/deleteController';
-import eventsController from './controllers/eventsController';
+import cocktailsController from './controllers/cocktailsController';
 //import adminController from './controllers/adminController';
 import authMiddleware from './middlewares/authMiddleware';
 //import adminMiddleware from './middlewares/adminMiddleware';
@@ -36,15 +36,17 @@ router.route('/new-password/:passwordResetToken')
         .post(bodyParser, authMiddleware, resetController.newPassword);
 
 
-router.get('/:location/today', eventsController.todayEventsList);
-router.get('/:location/week', eventsController.weekEventsList);
-router.get('/description/:eventName/:idEvent', eventsController.eventsInfo);
-
 router.get('/account', authMiddleware, accountController.displayAccount);
 
 router.put('/update-mail', bodyParser, authMiddleware, accountController.updateMail);
 router.put('/update-password', bodyParser, authMiddleware, accountController.updatePassword);
 router.put('/update-user-name', bodyParser, authMiddleware, accountController.updatePseudo);
+
+router.get('/cocktail/:cocktail_name', cocktailsController.cocktail);
+router.get('/cocktails_by_ingredient/:ingredient', cocktailsController.cocktailsSearchByIngredient);
+router.get('/home', cocktailsController.cocktailsRandom);
+router.get('/cocktails_alcoholic', cocktailsController.cocktailsAlcoholic);
+router.get('/cocktails_Non_alcoholic', cocktailsController.cocktailsNonAlcoholic); 
 
 export default router;
 
