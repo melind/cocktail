@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import cocktailAPI from '../../services/cocktailAPI';
-
+import {Carousel, Image, Card, Spin, Space} from 'antd';
 import './index.css';
 
 const Home = () => {
 
     const [cocktail, setCocktail] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     async function cocktailRandom() {  
 
@@ -19,7 +20,7 @@ const Home = () => {
            return err
         });
         setCocktail(randomCocktail);
-        
+        setLoading(false);
         }
     
         useEffect(() => {
@@ -27,15 +28,70 @@ const Home = () => {
         }, []); 
      
 
+const contentStyle = {
+  
+height: '500px',
 
+  color: '#fff',
+  lineHeight: '50px',
+  background: '#364d79',
+};
     return (
         <div className="home">
-             { cocktail['strDrink'] } <img src={`${cocktail['strDrinkThumb']}`} /> {cocktail['strInstructions']} {cocktail['strIngredient1']}
-                   
-                    
+          {loading ? 
+                 (<div className="spin">
+                 <Space size="middle">
+                     <Spin size="small" />
+                     <Spin />
+                     <Spin size="large" />
+                  </Space>
+                  </div>) 
+                  :
+                   (<Carousel effect="fade" beforeChange={cocktailRandom} autoplay dots={true}  style={contentStyle}>
+                        <div>
+                            
+                                <Link  to={`/cocktail/${ cocktail['strDrink'] }`} target="_parent" >
+                                         <p>{ cocktail['strDrink'] } </p>
+                                </Link>
+                                <Image
+                                         width={300}
+                                         src={`${cocktail['strDrinkThumb']}`}  alt="cocktail"
+                                       />
+                                <p>{cocktail['strInstructions']} </p>
+                           
+         
+                      </div>
+                      <div>
+                                <Link  to={`/cocktail/${ cocktail['strDrink'] }`} target="_parent" >
+                                         <p>{ cocktail['strDrink'] } </p>
+                                </Link>
+                                <Image
+                                         width={300}
+                                         src={`${cocktail['strDrinkThumb']}`}  alt="cocktail"
+                                       />
+                                <p>{cocktail['strInstructions']} </p>
+         
+                      </div>
+   
+                      <div>
+                                <Link  to={`/cocktail/${ cocktail['strDrink'] }`} target="_parent" >
+                                         <p>{ cocktail['strDrink'] } </p>
+                                </Link>
+                                <Image
+                                         width={300}
+                                         src={`${cocktail['strDrinkThumb']}`}  alt="cocktail"
+                                       />
+                                <p>{cocktail['strInstructions']} </p>
+         
+                      </div>
+                      
+                </Carousel>)}
           
-        <h1> welcome </h1>
-         <p>Duis ac commodo nisi, elementum varius lectus. Curabitur molestie rutrum augue nec finibus. Aliquam erat volutpat. Sed tristique faucibus turpis ut mattis. Suspendisse potenti. Ut in ex libero. Vivamus sagittis, erat et hendrerit hendrerit, mi elit consectetur mauris, id elementum odio diam nec odio. Nulla bibendum, nisl eget commodo convallis, augue diam fermentum lacus, ac laoreet purus justo eu dolor. Aliquam erat volutpat. In a imperdiet nunc. Aenean ultricies nisi eget lorem pretium, aliquet pellentesque est dictum. Aliquam massa felis, faucibus sit amet libero sit amet, efficitur sollicitudin lorem. Phasellus vitae orci vel lectus convallis tempor sit amet sit amet nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+               <h1> A Cocktail ?!</h1>
+                  
+                  <p>You're looking for a cocktail ? Want some inspiration ? You got  ingredients and do know what to do with ?
+                    This website is for you !
+                  </p>
        </div>
         
     )

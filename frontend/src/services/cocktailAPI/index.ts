@@ -26,7 +26,7 @@ export default {
         },    
     cocktailsByIngredient: (ingredient) => {
         axios.defaults.withCredentials = false;
-        return axios.get( API_URL + `/cocktail_by_ingredient/${ingredient}`)
+        return axios.get( API_URL + `/cocktails_by_ingredient/${ingredient}`)
         },
     cocktailsNA: () => {
        axios.defaults.withCredentials = true;

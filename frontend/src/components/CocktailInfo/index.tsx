@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import cocktailAPI from '../../services/cocktailAPI';
+import { Card, Col, Row, Image, Spin  } from 'antd';
 
 const CocktailInfo = (props) => {
     
 
     const [cocktail, setCocktail] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     let cocktailName = props.match.params.cocktail_name; 
     
@@ -20,20 +23,26 @@ const CocktailInfo = (props) => {
           
        });
        setCocktail(details);
+       setLoading(false);
        
        }
    
        useEffect(() => {
        cocktailDetails();
        }, []); 
-       let ingredients = [];
-let number_ingredient = 1;
-for (number_ingredient = 1; number_ingredient < 16; number_ingredient++) {
-                    
-    if (cocktail[`strIngredient${number_ingredient}`] != null) {
-      ingredients.push([cocktail[`strIngredient${number_ingredient}`]], [cocktail[`strMeasure${number_ingredient}`] ])
+       let ingredient = [];
+       let quantity = [];
+       let image = [];
+       //let ingredients = [];
+       let number_ingredient = 1;
+       for (number_ingredient = 1; number_ingredient < 16; number_ingredient++) {
+                           
+           if (cocktail[`strIngredient${number_ingredient}`] != null) {
+             //ingredients.push([cocktail[`strIngredient${number_ingredient}`]], [cocktail[`strMeasure${number_ingredient}`] ]);
+                   ingredient.push(cocktail[`strIngredient${number_ingredient}`])
+                   quantity.push(cocktail[`strMeasure${number_ingredient}`]);
             }
-  }
+         }
 
     return (
         <div className="cocktailInfo">
@@ -41,17 +50,52 @@ for (number_ingredient = 1; number_ingredient < 16; number_ingredient++) {
              <div>
                <p><a href="javascript:history.go(-1)">Retour</a></p>
                  <div >
-                    { cocktail['strDrink'] } <img src={`${cocktail['strDrinkThumb']}`} /> {cocktail['strInstructions']} 
-                
-                
-                        {ingredients.map((result) =>
-                        <div key={result.id}> 
-                               {result}
-                               </div>
-                        )} 
-            
-             
-             
+                   
+                          {loading ?      
+                          
+                             (<div className="spin"><Spin size="large" /></div>)
+                            
+                              :
+                             ( <Card title={ cocktail['strDrink'] } >
+                      
+                                <Image
+                                      width={300}
+                                      src={cocktail['strDrinkThumb']} alt="cocktail"
+                                    />
+
+                             </Card >
+                              )}
+                             <Row gutter={16}>
+                                    <Col span={8}>
+                                      <Card title="Ingredients" bordered={false}>
+                                       {ingredient.map((result) => 
+                                        <p>{result}</p> )}
+                                      </Card>
+                                    </Col>
+
+                                    <Col span={8}>
+                                      <Card title="Quantity" bordered={false}>
+                                         {quantity.map((result) => 
+                                        <p>{result}</p> )}
+                                      </Card>
+                                    </Col>
+
+                                    <Col span={8}>
+                                      <Card title="images" bordered={false}>
+                                        {ingredient.map((result) => 
+                                         <Image.PreviewGroup>
+                                         
+                                                <Image
+                                                  width={100}
+                                                  src={`https://www.thecocktaildb.com/images/ingredients/${result}.png`} alt="liquor"
+                                                />
+
+                                            </Image.PreviewGroup>
+                                        )}
+                                      </Card>
+                                    </Col>
+                               </Row>
+                           
                     
 
                  </div>

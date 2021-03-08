@@ -6,8 +6,10 @@ import './index.css';
 
 import Account from '../../containers/Account';
 import CocktailInfo from '../CocktailInfo';
+import Footer from '../Footer';
 import ForgetPassword from '../../containers/ForgetPassword';
 import Home from '../Home';
+import LegalMentions from '../LegalMentions';
 import Loggedout from '../../containers/Loggedout';
 import Login from '../../containers/Login';
 import Mail from '../../containers/Mail';
@@ -21,6 +23,7 @@ import Signup from '../../containers/Signup';
 import CocktailsAlcoholic from '../CocktailsAlcoholic';
 import UserName from '../../containers/UserName';
 import CocktailsNonAlcoholic from '../CocktailsNonAlcoholic';
+import CocktailsByIngredient from '../CocktailsByIngredient';
 import userAPI from '../../services/userAPI';
 
 const App = () => {
@@ -80,6 +83,7 @@ const App = () => {
         <PublicRoute restricted={false} path="/cocktails_alcoholic" exact component={CocktailsAlcoholic}/>
         <PublicRoute restricted={false} path="/cocktails_non_alcoholic" exact component={CocktailsNonAlcoholic}/>
         <PublicRoute restricted={false} path="/cocktail/:cocktail_name" exact component={CocktailInfo}/>
+        <PublicRoute restricted={false} path="/cocktails_by_ingredient/:ingredient" exact component={CocktailsByIngredient}/>
         <PrivateRoute path="/compte" exact component={Account}/>
         <PublicRoute restricted={true} path="/connectez-vous" exact  component={Login}/>
         <PublicRoute restricted={true} path="/mot-de-passe-oublie" exact  component={ForgetPassword}/>
@@ -88,9 +92,11 @@ const App = () => {
         <PrivateRoute path="/mise-a-jour-mot-de-passe" exact component={Password} />
         <PublicRoute restricted={true} path="/inscrivez-vous" exact  component={Signup} />
         <PrivateRoute path="/mise-a-jour-pseudo" exact component={UserName} />
+        <PublicRoute restricted={false} path="/legal-mentions" exact component={LegalMentions}/>
         <PublicRoute restricted={false}  path="/404" exact component={NotFound}/>
           <Redirect to="/404" />
       </Switch>
+      <Footer />
     </div>
   );
 }

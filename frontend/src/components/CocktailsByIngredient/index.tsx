@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import cocktailAPI from '../../services/cocktailAPI';
+import { Card, Image, BackTop } from 'antd';
 
-const cocktailsByIngredient = (props) => {
+const CocktailsByIngredient = (props) => {
     
 
     const [cocktails, setCocktails] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     let ingredient = props.match.params.ingredient; 
     
@@ -12,20 +15,28 @@ const cocktailsByIngredient = (props) => {
 
        const list = await cocktailAPI.cocktailsByIngredient(ingredient)
        .then(res => {
+           console.log(res.data.cocktails)
            return res.data.cocktails;
            
        })
        .catch(err => {
-          err
+         return err
        });
        setCocktails(list);
+       setLoading(false);
        
        }
    
        useEffect(() => {
        cocktailsList();
        }, []); 
+       
+      
 
+        const { Meta } = Card;
+        const gridStyle = {
+              width: '25%'
+            };
     return (
         <div className="cocktailsByIngredient">
 
@@ -34,15 +45,33 @@ const cocktailsByIngredient = (props) => {
                  <div > 
          
                     
-                    {cocktails['drinks'] && cocktails['drinks'].map((result) => <div key={result.idDrink}> <a href={`/cocktail/${result.strDrink}`} target="_blank">{result.strDrink}</a><img src={`${result.strDrinkThumb}`} /></div>)}
-                    
+                   
+                    <Card title="" className="card" loading={loading}>
+                          {cocktails['drinks'] && cocktails['drinks'].map((result) =>
 
+                     
+                          <Card.Grid  style={gridStyle} className="grid" key={result.idDrink}>
+                                 <Link  to={`/cocktail/${result.strDrink}`} target="_parent" key={result.idDrink}>
+                                      <p>{result.strDrink}</p>
+                                 </Link>
+                            <Image
+                              width={200}
+                              src={`${result.strDrinkThumb}`} alt="cocktail"
+                            />
+                          </Card.Grid>
+
+                      
+                      )} 
+                    </Card> 
+                  
                  </div>
-                
+                <BackTop>
+                 <div className="up">UP</div>
+                </BackTop>
                                
         </div>
         
         </div>
     )
 }
-export default cocktailsByIngredient;
+export default CocktailsByIngredient;

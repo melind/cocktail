@@ -17,6 +17,16 @@
   color : white;
   transition-delay: 0.1s;
 }
+.search{
+  margin-top: 15px;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+.input {
+  margin-bottom: 5px;
+}
 /*
 .ant-menu-horizontal > .ant-menu-item > a{
   color : #047b27;

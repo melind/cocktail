@@ -1,0 +1,17 @@
+.mentions {
+   /*border:  solid 2px blue;*/
+   color: #5b0025;
+   width: 100%;
+   height: 100%;
+}
+.accueil {
+   
+   padding-bottom: 3%;
+   padding-left: 15%;
+   text-align: left;
+}
+.logo-ml {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}

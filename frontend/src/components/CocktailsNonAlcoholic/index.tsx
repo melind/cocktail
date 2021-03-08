@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import cocktailAPI from '../../services/cocktailAPI';
+import { Card,  Image, BackTop } from 'antd';
 
 const CocktailsNonAlcoholic = () => {
 
     const [cocktails, setcocktails] = useState([]);
+    const [loading, setLoading] = useState(true);
 
      async function cocktailsList() { 
          const cocktailsInfo = await cocktailAPI.cocktailsNA()
@@ -18,6 +20,7 @@ const CocktailsNonAlcoholic = () => {
 
          // setting variable with the datacolected
          setcocktails(cocktailsInfo);
+         setLoading(false);
      
      }
 
@@ -25,21 +28,39 @@ const CocktailsNonAlcoholic = () => {
        cocktailsList();
        }, []); 
 
+       
+
+        const { Meta } = Card;
+        const gridStyle = {
+              width: '25%'
+            };
+
     return (
         <div className="cocktails">
 
         <div>
-                {cocktails['drinks'] && cocktails['drinks'].map((result) =>
-                 <div key={result.idDrink}> 
-                     {result.strDrink}
-                     <img src={`${result.strDrinkThumb}`} />
-                     <Link to={`/cocktail/${result.strDrink}`}>Plus d'info</Link>
+                <Card  className="card" loading={loading}>
+                          {cocktails['drinks'] && cocktails['drinks'].map((result) =>
 
-                 </div>
-                 )} 
+                     
+                          <Card.Grid  style={gridStyle} className="grid" key={result.idDrink}>
+                           
+                            <Link  to={`/cocktail/${result.strDrink}`} target="_parent" key={result.idDrink}>
+                                      <p>{result.strDrink}</p>
+                            </Link>
+                            <Image
+                              width={200}
+                              src={`${result.strDrinkThumb}`} alt="cocktail"
+                            />
+                          </Card.Grid>
+
+                      )} 
+                    </Card>  
                                
         </div>
-        
+        <BackTop>
+           <div className="up">UP</div>
+         </BackTop>
         </div>
     )
 }
