@@ -45,7 +45,7 @@ const CocktailInfo = (props) => {
          }
 
     return (
-        <div className="cocktailInfo">
+        <div className="cocktailInfo screen">
 
              <div>
                <p><a href="javascript:history.go(-1)">Retour</a></p>
@@ -58,14 +58,14 @@ const CocktailInfo = (props) => {
                               :
                              ( <Card title={ cocktail['strDrink'] } >
                       
-                                <Image
-                                      width={300}
+                                <Image className="cocktailInfo_image"
+                                      
                                       src={cocktail['strDrinkThumb']} alt="cocktail"
                                     />
 
                              </Card >
                               )}
-                             <Row gutter={16}>
+                             <Row gutter={4}>
                                     <Col span={8}>
                                       <Card title="Ingredients" bordered={false}>
                                        {ingredient.map((result) => 
@@ -86,7 +86,7 @@ const CocktailInfo = (props) => {
                                          <Image.PreviewGroup >
                                          
                                                 <Image
-                                                  width={100}
+                                                  className="cocktailInfo_image_ingredient"
                                                   src={`https://www.thecocktaildb.com/images/ingredients/${result}.png`} alt="liquor"
                                                 />
 

@@ -22,3 +22,25 @@
 
 
 }
+.cocktailInfo_image_ingredient{
+    width: 100px;
+}
+.cocktailInfo_image {
+  width: 300px;
+}
+
+@media screen and (max-width: 370px) {
+
+.cocktailInfo_image {
+  width: 269px;
+}
+.cocktailInfo_image_ingredient{
+    width: 76px;
+}
+}
+
+@media screen and (min-width: 1025px) {
+.cocktailInfo {
+padding: 5px;
+}
+}

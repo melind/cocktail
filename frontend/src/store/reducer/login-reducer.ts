@@ -26,7 +26,7 @@ const reducer = (state = stateInitial, action : {type: string, payload: any}) =>
             return {
                 ...state,
                 loggedin: false,
-                error: "Connexion échoué",
+                error: "Connexion failed",
 
             }
         case INIT:

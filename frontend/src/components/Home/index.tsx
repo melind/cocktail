@@ -29,7 +29,7 @@ const Home = () => {
      
 
     return (
-        <div className="home">
+        <div className="home screen">
           {loading ? 
                  (<div className="spin">
                  <Space size="middle">

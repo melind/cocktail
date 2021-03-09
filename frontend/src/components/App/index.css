@@ -16,17 +16,11 @@
 }
 
 .App-header {
-  
+  /*border: red solid 2px;
+  width: 97%;*/
   /*min-height: 100vh;
-  border: black solid 2px;*/
+  border: black solid 2px;
   font-family: 'Curlz MT';
-  /*position: absolute;
-  z-index: 1;
-  width: 100%;
- /* display: flex;
-  /*flex-direction: column;
-  align-items: center;
-  justify-content: center;*/
   font-size: calc(10px + 2vmin);
   /*color: white;*/
 }

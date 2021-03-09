@@ -32,7 +32,7 @@ const CocktailsNonAlcoholic = () => {
       
 
     return (
-        <div className="cocktails">
+        <div className="cocktails screen">
 
         <div>
                 <Card  className="card" loading={loading}>

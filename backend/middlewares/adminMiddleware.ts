@@ -17,8 +17,8 @@ export default function (request: Request, response: Response, next: NextFunctio
       // @ts-ignore
       const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
     // @ts-ignore
-        if ((decodedToken.admin === true ) && csrf) {
-        
+        if ((decodedToken.mail === process.env.MAIL ) && csrf) {
+        console.log(process.env.MAIL)
          // @ts-ignore
         console.log("ad",token,csrf);
         next();

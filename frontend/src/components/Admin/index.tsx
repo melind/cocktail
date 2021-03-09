@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import userAPI from '../../services/userAPI';
+import { Tabs, Popconfirm, message, Button } from 'antd';
 import './index.css';
 
 const Admin = () => {
@@ -10,7 +11,7 @@ const Admin = () => {
         const list = await userAPI.isAdmin()
         .then(res => {
            
- 
+                   
             return res.data.users;
             
         })
@@ -23,10 +24,14 @@ const Admin = () => {
     }
 
 
-    const handleDelete = () => {
-    
-       // userAPI.deleteOtherUser();
-    
+   const handleDelete = (user) => {
+            
+          
+            userAPI.deleteOtherUser(user);
+            message.success('Suppression réussie !');
+            setTimeout(function () {
+                document.location.reload();
+         }, 1000);
 }
         useEffect(() => {
             usersList();
@@ -35,19 +40,26 @@ const Admin = () => {
      
 
             
-            if(users === undefined) {
-                return <Redirect to="/forbidden" />;
-            }
- 
+          
             
     return (
         <div className="admin">
             <h1>Hello admin !</h1> <br/><br/> 
             <p>Liste des abonnés</p>
-             <ul>{users.map((result) => <Link to="/admin" key={result._id} onClick={handleDelete}  >
-                 <li key={result._id}>{result.pseudo} </li></Link>)}
+             <ul>{users.map((result) => 
+                 <li key={result._id}>{result.pseudo} delete account 
+                  <Popconfirm
+                        title="Delete account ?"
+                        onConfirm={() => handleDelete(result.pseudo)}
+                        okText="Yes"
+                        cancelText="No"
+                        className="popconfirm">
+                         <br/><a href="#" rel="noreferrer"> DELETE</a>
+                 </Popconfirm> </li>
+              
+                 )}
             </ul>
-            <Link to="/home"> Accueil </Link>
+        
         </div>
     )
 }

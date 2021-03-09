@@ -17,7 +17,10 @@ export default {
         axios.defaults.withCredentials = true;
         return axios.delete( API_URL + '/delete-account', {headers: headers})
     },
-
+     deleteOtherUser: (user) => { 
+        axios.defaults.withCredentials = true;
+        return axios.delete( API_URL + `/delete-other-account/${user}`, {headers: headers})
+    },
     infoUser: () => { 
         axios.defaults.withCredentials = true;
         return axios.get( API_URL + '/account')

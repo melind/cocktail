@@ -140,7 +140,6 @@ export default class AuthController {
     static async userConfirmation(request: Request, response: Response) {
             // Find a matching token
             let token_mail = request.params.token;
-            // = htmlspecialchars(token_mail);
             //@ts-ignore
             const token =  Token.findOne({ token: token_mail }, function (err, token) {
             if (!token) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
@@ -162,8 +161,8 @@ export default class AuthController {
 
 
     static async resendToken(request: Request, response: Response) {
-   
-      User.findOne({ mail: request.body.mail }, function (err, user) {
+            
+      User.findOne({ mail: htmlspecialchars(request.body.mail) }, function (err, user) {
           if (!user) return response.status(400).json({ msg: 'We were unable to find a user with that email.' });
           if (user.isVerified) return response.status(400).json({ msg: 'This account has already been verified. Please log in.' });
    
@@ -265,7 +264,7 @@ export default class AuthController {
                     
                 const token = jsonwebtoken.sign({
                               nickname: user.pseudo,
-                              admin: user.admin,
+                              mail: user.mail,
                               exp: (new Date().getTime() + 60 * 60 * 1000)/1000 //exp dans 1h
                               
                           },

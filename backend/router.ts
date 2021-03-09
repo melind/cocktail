@@ -28,6 +28,8 @@ router.post('/login', bodyParser, authController.postLogin);
 router.get('/logout', authController.logout);
 
 router.delete('/delete-account', deleteController.deleteAccount);
+router.delete('/delete-other-account/:user', deleteController.deleteOtherAccount);
+
 router.post('/signup',bodyParser, authController.postSignup);
 router.get('/confirmation/:token', authController.userConfirmation);
 router.post('/resend', bodyParser, authController.resendToken);

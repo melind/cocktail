@@ -35,7 +35,7 @@ const Signup = ({pseudo, mail, password, onSubmit, error, init}) => {
           
           if (result[0] === undefined && result[2] === undefined) { 
           onSubmit(formState);
-         //window.location.replace(URL||"http://localhost:3000/login");
+          window.location.replace(URL||"http://localhost:3000/login");
           }
          result[0] ? setValidateMail(false): setValidateMail(true);
           

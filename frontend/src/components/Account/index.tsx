@@ -20,6 +20,7 @@ const handleDelete = () => {
         message.success('Suppression réussie !');
         setTimeout(function () {
            userAPI.logOut();
+           userAPI.logout();
            window.location.replace(URL||"http://localhost:3000/home");
          }, 1000);
 }
@@ -57,7 +58,7 @@ const handleInit = () => {
             >
 
 
-                Delete account
+               <a href="#" rel="noreferrer"> Delete account</a>
              </Popconfirm>
 
         </div>

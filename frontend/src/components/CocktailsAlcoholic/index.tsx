@@ -11,7 +11,7 @@ const CocktailsAlcoholic = () => {
      async function cocktailsList() { 
          const cocktailsInfo = await cocktailAPI.cocktailsA()
          .then(res => {
-          console.log("al",res.data.cocktail)
+         
              return res.data.cocktails;
          })
          .catch(err => {
@@ -34,7 +34,7 @@ const CocktailsAlcoholic = () => {
         
 
     return (
-        <div className="cocktail">
+        <div className="cocktailInfo screen">
             
                <div>
               

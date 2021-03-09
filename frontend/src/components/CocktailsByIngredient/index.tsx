@@ -15,7 +15,7 @@ const CocktailsByIngredient = (props) => {
 
        const list = await cocktailAPI.cocktailsByIngredient(ingredient)
        .then(res => {
-           console.log(res.data.cocktails)
+           
            return res.data.cocktails;
            
        })
@@ -36,7 +36,7 @@ const CocktailsByIngredient = (props) => {
         const { Meta } = Card;
       
     return (
-        <div className="cocktailsByIngredient">
+        <div className="cocktailsByIngredient screen">
 
              <div>
                <p><a href="javascript:history.go(-1)">Retour</a></p>
