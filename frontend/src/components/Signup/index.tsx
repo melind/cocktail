@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import  displayError  from '../../lib/validation';
 import {Button, Input} from 'antd';
-
+import './index.css';
 // component = function return element to display
 const Signup = ({pseudo, mail, password, onSubmit, error, init}) => {
-    
-    const history = useHistory();
+    const URL = process.env.REACT_APP_URL;
     setTimeout(function () {
         init();
     
@@ -36,7 +35,7 @@ const Signup = ({pseudo, mail, password, onSubmit, error, init}) => {
           
           if (result[0] === undefined && result[2] === undefined) { 
           onSubmit(formState);
-          history.push("/connectez-vous");
+         //window.location.replace(URL||"http://localhost:3000/login");
           }
          result[0] ? setValidateMail(false): setValidateMail(true);
           
@@ -50,16 +49,16 @@ const Signup = ({pseudo, mail, password, onSubmit, error, init}) => {
 
         <div className="form"> 
 
-        <h1>Inscrivez-vous</h1><br/>
+        <h1>Sign Up</h1><br/>
 
          <form onSubmit={handleSubmit} action="/signup" method="POST" >
           <label htmlFor="pseudo">Pseudo : </label><Input className="input" id="pseudo" name="pseudo" placeholder="Entrer votre pseudo" onChange={handleChange} value={formState.pseudo} required></Input> <br/>
           <label htmlFor="mail">E-mail : </label><Input className="input" id="mail" name="mail" placeholder="Entrer votre e-mail" onChange={handleChange} value={formState.mail} required></Input> <br/>
-          <label htmlFor="password"> Mot de passe : </label><Input className="input" id="password" name="password" type="password" placeholder="Entrer votre mot de passe" onChange={handleChange} value={formState.password} required></Input> < br/><br/>
-          <Button htmlType="submit" >Valider</Button>
+          <label htmlFor="password"> Password : </label><Input className="input" id="password" name="password" type="password" placeholder="Entrer votre mot de passe" onChange={handleChange} value={formState.password} required></Input> < br/><br/>
+          <Button htmlType="submit" >Submit</Button>
           
           { validateMail  ? " " : result[0]} { validatePassword  ? " " : result[2]} <p>  
-            <Link to="/connectez-vous">Déjà inscrit ?</Link>
+            <Link to="/login">Have an account ?</Link>
           </p>
         </form>
         

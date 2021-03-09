@@ -5,7 +5,7 @@ import loggedout from './loggedout-reducer';
 import login from './login-reducer';
 import signup from './signup-reducer';
 import newPassword from './newPassword-reducer';
-import resetPassword from './resetPassword-reducer';
+import reset from './reset-reducer';
 
 const rootReducer = combineReducers({
 
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
     loggedout,
     login,
     newPassword,
-    resetPassword,
+    reset,
     signup
   
 });

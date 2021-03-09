@@ -5,21 +5,22 @@ export default function (request: Request, response: Response, next: NextFunctio
   // check cookie presence and good jwt
 
   // no need to check for this pages so we get their url (http://....)
-  if ( ['/','/login','/signup'].includes(request.url) ) {
-    next();
-  } else {
+  if ( ['/admin'].includes(request.url) ) {
+       const token: any = request.cookies.jwt;
+       // @ts-ignore
+       const csrf: any = request.session.csrf; console.log("ad",token,csrf);
+ 
     
-    const token: any = request.cookies.jwt;
-    const csrf: any = request.session.csrf;
   
     
     try {
+      // @ts-ignore
       const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
-    
+    // @ts-ignore
         if ((decodedToken.admin === true ) && csrf) {
         
-        
-        
+         // @ts-ignore
+        console.log("ad",token,csrf);
         next();
       } else {
         
@@ -31,4 +32,7 @@ export default function (request: Request, response: Response, next: NextFunctio
     }
     
   }
+    else {
+       response.status(403).end();
+    }
 }

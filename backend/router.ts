@@ -11,9 +11,9 @@ import resetController from './controllers/resetController';
 import accountController from './controllers/accountController';
 import deleteController from './controllers/deleteController';
 import cocktailsController from './controllers/cocktailsController';
-//import adminController from './controllers/adminController';
+import adminController from './controllers/adminController';
 import authMiddleware from './middlewares/authMiddleware';
-//import adminMiddleware from './middlewares/adminMiddleware';
+import adminMiddleware from './middlewares/adminMiddleware';
  
 const router: express.Router = express.Router();
 
@@ -22,25 +22,36 @@ const bodyParser = bodyparser.urlencoded({extended: true});
 
 router.get('/', homeController.pseudoUser);
 
-router.post('/login', bodyParser, authController.postLogin);
-router.get('/logout', authMiddleware, authController.logout);
+router.get('/admin', adminMiddleware, adminController.usersList);
 
+router.post('/login', bodyParser, authController.postLogin);
+router.get('/logout', authController.logout);
+
+router.delete('/delete-account', deleteController.deleteAccount);
 router.post('/signup',bodyParser, authController.postSignup);
-router.post('/confirmation', bodyParser, authController.userConfirmation);
+router.get('/confirmation/:token', authController.userConfirmation);
 router.post('/resend', bodyParser, authController.resendToken);
 
 router.post('/reset-password', bodyParser, resetController.resetPassword);
 
 router.route('/new-password/:passwordResetToken')
-        .get(authMiddleware, resetController.editFormPassword)
-        .post(bodyParser, authMiddleware, resetController.newPassword);
+        .get( resetController.editFormPassword)
+        .post(bodyParser, resetController.newPassword);
 
 
 router.get('/account', authMiddleware, accountController.displayAccount);
 
-router.put('/update-mail', bodyParser, authMiddleware, accountController.updateMail);
-router.put('/update-password', bodyParser, authMiddleware, accountController.updatePassword);
-router.put('/update-user-name', bodyParser, authMiddleware, accountController.updatePseudo);
+router.route('/update-mail')
+        .get(authMiddleware)
+        .put(bodyParser, accountController.updateMail);
+
+router.route('/update-password')
+        .get(authMiddleware)
+        .put(bodyParser, accountController.updatePassword);
+
+router.route('/update-user-name')
+        .get(authMiddleware)
+        .put( bodyParser, accountController.updatePseudo);
 
 router.get('/cocktail/:cocktail_name', cocktailsController.cocktail);
 router.get('/cocktails_by_ingredient/:ingredient', cocktailsController.cocktailsSearchByIngredient);

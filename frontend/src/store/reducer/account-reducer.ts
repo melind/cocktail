@@ -14,6 +14,8 @@ const stateInitial = {
  export const UPDATE_ERROR = "UPDATE_ERROR";
  export const DELETE_SUCCESS = "DELETE_SUCCESS";
  export const DELETE_ERROR = "DELETE_ERROR";
+ export const RESEND_SUCCESS = "RESEND_SUCCESS";
+ export const RESEND_ERROR = "RESEND_ERROR";
  export const INIT = "INIT";
 
 const reducer = (state = stateInitial, action : {type: string, payload : any}) => {
@@ -56,6 +58,19 @@ const reducer = (state = stateInitial, action : {type: string, payload : any}) =
             return {
                 ...state,
                 error: "désinscription non réussi",
+
+            }
+        case RESEND_SUCCESS: 
+            return {
+                ...state, 
+                ...stateInitial,
+                error: false
+
+            }
+        case RESEND_ERROR:
+            return {
+                ...state,
+                error: "No user",
 
             }
         case INIT: 
@@ -162,6 +177,27 @@ export const deleteAccount = () => (dispatch, getState) => {
             dispatch(deleteError());
         });
 };
+
+export const resend = (formState) => (dispatch, getState) => {
+    // name of the inputateInitial
+    
+    // axios collect post info from the user via name input
+    return  userAPI.resendToken(formState)
+        .then( (res) => {
+            // inform my reducer this is a success 
+            //and take data from response of accountController.updateAccount
+            
+            dispatch(resendSuccess());
+        })
+        .catch(err => {
+            // inform my reducer there is an error
+      
+            if (err) {
+                 alert("No user")};
+          
+            dispatch(resendError());
+        });
+};
 /*-----------    action creator  -------------*/
 // function that create actions (= payload = data from the application for the store = update stateInitial)
 
@@ -192,6 +228,14 @@ export const deleteSuccess = () => ({
 
 export const deleteError = () => ({
     type: DELETE_ERROR
+});
+
+export const resendSuccess = () => ({
+    type: RESEND_SUCCESS
+});
+
+export const resendError = () => ({
+    type: RESEND_ERROR
 });
 
 export const init = () => ({

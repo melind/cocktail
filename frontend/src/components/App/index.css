@@ -17,8 +17,8 @@
 
 .App-header {
   
-  /*min-height: 100vh;*/
-  border: black solid 2px;
+  /*min-height: 100vh;
+  border: black solid 2px;*/
   font-family: 'Curlz MT';
   /*position: absolute;
   z-index: 1;
@@ -32,23 +32,26 @@
 }
 
 .brand-header {
-  border: red solid 2px;
+  /*border: red solid 2px;*/
   display: flex;
   justify-content: space-between;
 }
 .brand-name {
-  border: green solid 2px;
+ /* border: green solid 2px;*/
 }
 .authentification {
-  border: green solid 2px;
+  /*border: green solid 2px;*/
   display: flex;
   font-size: 12px;
+  align-items: center;
+  margin-right: 5px;
 }
 
 .authentificated {
-  border: blue solid 2px;
+  /*border: blue solid 2px;*/
   display: flex;
   flex-direction: column;
+  margin-right: 5px;
 }
 
 .auth {

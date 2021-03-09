@@ -49,7 +49,7 @@ export default class AuthController {
         if (!pseudo || !mail || !password) {
             //Le cas où l'email ou bien le password ne serait pas soumit ou nul
                       response.status(400).json({
-                                                 text: "Requête invalide"
+                                                 text: "Request invalid"
                                                  });       
                     
                      
@@ -62,7 +62,7 @@ export default class AuthController {
          
            if (!regexMail) {
              response.status(400).json({
-                                         text: "Format de mail invalide"
+                                         text: "Mail format invalid"
                                         });   
             }
          
@@ -70,7 +70,7 @@ export default class AuthController {
 
             if (password.length <8){
             response.status(400).json({
-                                         text: "mot de passe doir contenir au moins 8 caractères"
+                                         text: "Password must contains at least 8 characters"
                                         });
           }
           else { 
@@ -114,17 +114,17 @@ export default class AuthController {
                     }
               });
                     let mailOptions = { 
-                      from: 'no-reply@events-world-wide.fr', 
+                      from: 'no-reply-cocktail@pechemelba.fr', 
                       to: newUser.mail, 
-                      subject: 'Vérification du compte', 
-                      html: '<html><body>Bonjour,</br></br>' + 'Veuillez vérifiez votre compte en cliquant sur ce lien s\'il vous plait: <a href="http:\/\/' + request.headers.host + '\/confirmation\/' + token.token + '">Cliquez ici </a>.</br></br>Events World Wide</body></body>'
+                      subject: 'Valid account', 
+                      html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="http:\/\/' + request.headers.host + '\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>'
                     };
                     // @ts-ignore
                     transporter.sendMail(mailOptions, function (err) {
                         if (err) { 
                           return response.status(500).json({ err}); 
                        }
-                        response.status(200).json('Un e-mail de confirmation a été envoyé à ' + newUser.mail + '.');
+                        response.status(200).json('A confirmation e-mail send ' + newUser.mail + '.');
                     });
                 });
              }
@@ -139,7 +139,10 @@ export default class AuthController {
 
     static async userConfirmation(request: Request, response: Response) {
             // Find a matching token
-            const token =  Token.findOne({ token: request.body.token }, function (err, token) {
+            let token_mail = request.params.token;
+            // = htmlspecialchars(token_mail);
+            //@ts-ignore
+            const token =  Token.findOne({ token: token_mail }, function (err, token) {
             if (!token) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
             
             // If we found a token, find a matching user
@@ -183,10 +186,10 @@ export default class AuthController {
                     }
               });
               let mailOptions = { 
-                from: 'no-reply@events-world-wide.fr', 
+                from: 'no-reply-cocktail@pechemelba.fr', 
                 to: user.mail, 
-                subject: 'Vérification du compte', 
-                html: '<html><body>Bonjour,</br></br>' + 'Veuillez vérifiez votre compte en cliquant sur ce lien s\'il vous plait: <a href="http:\/\/' + request.headers.host + '\/confirmation\/' + token.token + '">Cliquez ici </a>.</br></br>Events World Wide</body></body>' 
+                subject: 'Valid account', 
+                html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="http:\/\/' + request.headers.host + '\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>' 
               }; 
               // @ts-ignore
               transporter.sendMail(mailOptions, function (err) {
@@ -213,7 +216,7 @@ export default class AuthController {
 
                 if (!pseudo|| !password) {
                   response.status(400).json({
-                    text: "Requete invalide"
+                    text: "Request invalid"
                   }); 
                    
               } 
@@ -227,7 +230,7 @@ export default class AuthController {
 
                     if (!user) {
                         response.status(400).json({
-                          text: "Cet utilisateur n'existe pas"
+                          text: "User don't exist or wrong password"
                         }); 
                          
                     } 
@@ -237,7 +240,7 @@ export default class AuthController {
                     
                     if (!goodPassword) {
                       response.status(401).json({
-                        text: "Mauvais mot de passe"
+                        text: "User don't exist or wrong password"
                       });
                      
                  }
@@ -279,7 +282,7 @@ export default class AuthController {
                  });  
                  response.status(200).json({
                     text: "Succès for post login",
-                    token: token
+                    csrf
                     });
                     
                 

@@ -27,13 +27,17 @@ export default class AccountController {
 
               const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
               const pseudo = decodedToken.nickname;
-
+            try { 
               // get user corresponding in data base 
               const user: IUser  = await User.findOne({pseudo});
                  if (user) {
                  response.status(200).json({
                                          user,
                                         });
+                 }
+
+                 } catch (err) {
+                   return err;
                  }
             }
             
@@ -57,7 +61,7 @@ export default class AccountController {
 
                  if (!pseudo) {
                   response.status(400).json({
-                    text: "Requete invalide"
+                    text: "Request invalid"
                   });
                 }
 
@@ -73,7 +77,7 @@ export default class AccountController {
                               });
                    } 
 
-                   if(token){ 
+                   else{ 
 
                        const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
                        const name = decodedToken.nickname;
@@ -117,7 +121,7 @@ export default class AccountController {
                                });  
                                response.status(200).json({
                                                        //user,
-                                                       text: "Modifications réussies!"
+                                                       text: "Modifications success!"
                                                       });
                                });
                         }
@@ -148,7 +152,7 @@ export default class AccountController {
 
                  if (!mail) {
                   response.status(400).json({
-                    text: "Requete invalide"
+                    text: "Request invalid"
                   });
                 }
 
@@ -162,7 +166,7 @@ export default class AccountController {
 
                    if (!regexMail) {
                        response.status(400).json({
-                                         text: "Format mail invalide"
+                                         text: "Mail format invalid"
                         });   
                     }
                     if (regexMail) { 
@@ -217,7 +221,7 @@ export default class AccountController {
                                   });  
                                   response.status(200).json({
                                                           //user,
-                                                          text: "Modifications réussies!"
+                                                          text: "Modifications success!"
                                                          });
                                   });
                           }
@@ -248,12 +252,12 @@ export default class AccountController {
 
                  if (!password ) {
                   response.status(400).json({
-                    text: "Requete invalide"
+                    text: "Request invalid"
                   });
                 }
                 if (password.length <8){
                   response.status(400).json({
-                                         text: "mot de passe pas assez long"
+                                         text: "Password not long enough"
                                         });
                  }
 
@@ -315,7 +319,7 @@ export default class AccountController {
                                });  
                                response.status(200).json({
                                                        //user,
-                                                       text: "Modifications réussies!"
+                                                       text: "Modifications success!"
                                                       });
                                });
                         }

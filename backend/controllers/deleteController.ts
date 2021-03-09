@@ -25,7 +25,7 @@ export default class DeleteController {
           //get user corresponding in data base for remove it
 
            const user: IUser  = await User.findOne({pseudo});
-               if(user) { 
+               if(user) { //@ts-ignore
                          user.remove((error, product) => {
                             if (error) {
                             

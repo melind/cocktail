@@ -6,12 +6,12 @@ import userAPI from '../../services/userAPI';
 
 const Login = ({pseudo, password, onSubmit, loggedin, error, init}) => {
 
-
+ 
  setTimeout(function () {
     init();
   }, 1000);
 
- 
+  const URL = process.env.REACT_APP_URL;
   const [formState, setFormState] = useState({pseudo, password, loggedin});
  
  
@@ -31,7 +31,7 @@ const Login = ({pseudo, password, onSubmit, loggedin, error, init}) => {
      //create local.sotorage
      userAPI.login();
      setTimeout(function () {
-      window.location.replace("http://localhost:3000/");
+      window.location.replace(URL||"http://localhost:3000/home");
     }, 1000);
    }
      
@@ -40,15 +40,16 @@ const Login = ({pseudo, password, onSubmit, loggedin, error, init}) => {
 
         <div className="form"> 
 
-        <h1>Connectez-Vous</h1>< br/>
+        <h1>Login</h1>< br/>
         
-        <form onSubmit={handleSubmit} action="/">
+        <form onSubmit={handleSubmit} action="/login" >
         <label htmlFor="pseudo">Pseudo :  </label><Input className="input" id="pseudo" name="pseudo" placeholder="Entrer votre pseudo" onChange={handleChange} value={formState.pseudo} required></Input> < br/>< br/>
-        <label htmlFor="password">Mot de passe : </label><Input className="input" id="password" name="password" type="password" placeholder="Entrer votre mot de passe" onChange={handleChange} value={formState.password} required></Input> < br/>< br/>< br/>
-          <Button  htmlType="submit" >Valider</Button>
+        <label htmlFor="password">password : </label><Input className="input" id="password" name="password" type="password" placeholder="Entrer votre mot de passe" onChange={handleChange} value={formState.password} required></Input> < br/>< br/>< br/>
+          <Button  htmlType="submit" >Submit</Button>
           <p>{error}<br/>  
-            <Link to="/inscrivez-vous">Pas encore inscrit ?</Link>
-            <Link to="/mot-de-passe-oublie">Mot de passe oublié ? ?</Link>
+            <Link to="/signup">Not already signed up ? </Link>
+            <Link to="/forget-passord">forgot password ? </Link>
+            <Link to="/resend-email">resend confirmation email ? </Link>
             
           </p> 
         </form>

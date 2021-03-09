@@ -29,11 +29,7 @@ const CocktailsNonAlcoholic = () => {
        }, []); 
 
        
-
-        const { Meta } = Card;
-        const gridStyle = {
-              width: '25%'
-            };
+      
 
     return (
         <div className="cocktails">
@@ -43,13 +39,12 @@ const CocktailsNonAlcoholic = () => {
                           {cocktails['drinks'] && cocktails['drinks'].map((result) =>
 
                      
-                          <Card.Grid  style={gridStyle} className="grid" key={result.idDrink}>
+                          <Card.Grid  className="grid" key={result.idDrink}>
                            
                             <Link  to={`/cocktail/${result.strDrink}`} target="_parent" key={result.idDrink}>
                                       <p>{result.strDrink}</p>
                             </Link>
-                            <Image
-                              width={200}
+                            <Image className="grid_image"
                               src={`${result.strDrinkThumb}`} alt="cocktail"
                             />
                           </Card.Grid>

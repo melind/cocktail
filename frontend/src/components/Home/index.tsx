@@ -28,14 +28,6 @@ const Home = () => {
         }, []); 
      
 
-const contentStyle = {
-  
-height: '500px',
-
-  color: '#fff',
-  lineHeight: '50px',
-  background: '#364d79',
-};
     return (
         <div className="home">
           {loading ? 
@@ -47,17 +39,17 @@ height: '500px',
                   </Space>
                   </div>) 
                   :
-                   (<Carousel effect="fade" beforeChange={cocktailRandom} autoplay dots={true}  style={contentStyle}>
+                   (<Carousel effect='fade'  beforeChange={cocktailRandom} autoplay dots={false}  >
                         <div>
                             
-                                <Link  to={`/cocktail/${ cocktail['strDrink'] }`} target="_parent" >
+                                <Link   to={`/cocktail/${ cocktail['strDrink'] }`} target="_parent" >
                                          <p>{ cocktail['strDrink'] } </p>
                                 </Link>
                                 <Image
                                          width={300}
                                          src={`${cocktail['strDrinkThumb']}`}  alt="cocktail"
                                        />
-                                <p>{cocktail['strInstructions']} </p>
+                              
                            
          
                       </div>
@@ -69,19 +61,19 @@ height: '500px',
                                          width={300}
                                          src={`${cocktail['strDrinkThumb']}`}  alt="cocktail"
                                        />
-                                <p>{cocktail['strInstructions']} </p>
+                             
          
                       </div>
    
                       <div>
-                                <Link  to={`/cocktail/${ cocktail['strDrink'] }`} target="_parent" >
+                                <Link   to={`/cocktail/${ cocktail['strDrink'] }`} target="_parent" >
                                          <p>{ cocktail['strDrink'] } </p>
                                 </Link>
                                 <Image
                                          width={300}
                                          src={`${cocktail['strDrinkThumb']}`}  alt="cocktail"
                                        />
-                                <p>{cocktail['strInstructions']} </p>
+                             
          
                       </div>
                       

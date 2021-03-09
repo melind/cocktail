@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import ForgetPassword from '../components/ForgetPassword';
-import { resetPassword, init } from '../store/reducer/resetPassword-reducer';
+import { reset, init } from '../store/reducer/reset-reducer';
 
 const mapStateToProps =
  (state) => ({
-   mail: state.resetPassword.mail
+   mail: state.reset.mail
 });
 
 const mapDispatchToProps = (dispatch) => ({
     onSubmit: (formState) => {
-        dispatch(resetPassword(formState))
+        dispatch(reset(formState))
     },
     init: () => {
         dispatch(init())

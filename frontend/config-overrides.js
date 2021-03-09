@@ -10,15 +10,16 @@ module.exports = override(
    addLessLoader({
    javascriptEnabled: true,
    modifyVars: { 
-     '@primary-color': 'black',
-     '@menu-dark-color': 'black',
+     'primary-color': '#2b2111',
+     'background-color': '#faedb5',
+     /*'@menu-dark-color': 'black',
      '@menu-item-color': 'black',
      '@menu-bg': 'transparent',
      //'@menu-dark-selected-item-icon-color': '#04e804',
-     '@menu-dark-selected-item-text-color': 'yellow',
-     '@menu-dark-highlight-color': 'yellow',
+     '@menu-dark-selected-item-text-color': 'orange',
+     '@menu-dark-highlight-color': 'pink',
      '@menu-dark-item-active-bg': 'transparent',
-     '@label-color': 'yellow',
+     '@label-color': 'orange',*/
      }
  })
  );

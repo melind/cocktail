@@ -20,7 +20,6 @@ const Nav = () => {
 
                const body = document.body;
                body.classList.toggle('dark');
-               menu.classList.toggle('dark');
        };
 
         let inputValue_cocktail;
@@ -30,7 +29,6 @@ const Nav = () => {
           
           const value: string = e.target.value;
           inputValue_cocktail = value;
-          console.log('input',inputValue_cocktail);
           setSearchCocktail(value);
                    // name_input : input_value
               
@@ -39,7 +37,6 @@ const Nav = () => {
           
           const value: string = e.target.value;
           inputValue_ingredient = value;
-          console.log('input',inputValue_ingredient);
           setSearchIngredient(value);
                    // name_input : input_value
               
@@ -53,12 +50,7 @@ const Nav = () => {
          
            window.location.replace(`cocktails_by_ingredient/${searchIngredient}`);
         }
-       
-    return (
-        <div className="nav">  
-      
-                 <Menu mode="horizontal" className="menu" theme={theme}>
-                       <SubMenu
+       /** <SubMenu
                              title={
                         
                                 <Switch
@@ -69,7 +61,12 @@ const Nav = () => {
                         
                           }
                         >  
-                        </SubMenu>
+                        </SubMenu> */
+    return (
+        <div className="nav">  
+      
+                 <Menu mode="horizontal" className="menu" theme={theme}>
+                      
 
                       <Menu.Item key="home">
                           <Link to="/home"> Accueil </Link>
@@ -85,14 +82,17 @@ const Nav = () => {
   
                  </Menu>
                         <div className="search">
-                          <div>
-                        <label htmlFor="cocktail_name"> Cocktail name : </label><Input className="input"  name="cocktail"  placeholder="cocktail name" onChange={handleChange_cocktail} value={inputValue_cocktail}  ></Input> 
-                        <Button    icon={<SearchOutlined />} htmlType="submit" onClick={handleSubmit_cocktail} >search</Button>
-                       </div>
-                    <div>
-                        <label htmlFor="cocktail_ingredient"> Already have an ingredient ? </label><Input className="input"  name="name"  placeholder="ingredient" onChange={handleChange_ingredient} value={inputValue_ingredient}  ></Input> 
-                        <Button  icon={<SearchOutlined />} htmlType="submit" onClick={handleSubmit_ingredient} >search</Button>
-                     </div>
+                          
+                           <div className="search_info">
+                               <label htmlFor="cocktail_name"> Cocktail name : </label><Input className="input"  name="cocktail"  placeholder="cocktail name" onChange={handleChange_cocktail} value={inputValue_cocktail}  ></Input> 
+                               <Button    icon={<SearchOutlined />} htmlType="submit" onClick={handleSubmit_cocktail} >search</Button>
+                           </div>
+
+                           <div className="search_info">
+                               <label htmlFor="cocktail_ingredient"> Already have an ingredient ? </label><Input className="input"  name="name"  placeholder="ingredient" onChange={handleChange_ingredient} value={inputValue_ingredient}  ></Input> 
+                               <Button  icon={<SearchOutlined />} htmlType="submit" onClick={handleSubmit_ingredient} >search</Button>
+                           </div>
+
                      </div>
                 
                   

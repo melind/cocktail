@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import userAPI from '../../services/userAPI';
 
 
@@ -8,24 +8,24 @@ const Loggedout = ({loggedout, onClick, pseudo, display}) => {
 
 display();
 
-
+  const URL = process.env.URL;
   const logOut = () => {
-  
-  userAPI.logOut();
+   //clear cookie
+   userAPI.logOut();
    onClick();
 
   }
   if(loggedout) {
-    //clear local.storage
-     userAPI.logout();
-     window.location.replace("http://localhost:3000/");
+  //clear local.storage
+   userAPI.logout();
+     window.location.replace(URL||"http://localhost:3030/home");
    }
 
     return (
         <div>
                 <div>{pseudo}</div>
-                <div> <Link to="/compte"> Mon compte</Link > </div>
-                <a href="/" onClick={logOut}>déconnectez-vous</a>
+                <div> <Link to="/account"> My account</Link > </div>
+                <a href="/home" onClick={logOut}>Log out</a>
 
         </div>
         

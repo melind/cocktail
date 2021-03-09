@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import cocktailAPI from '../../services/cocktailAPI';
 import { Card, BackTop, Image } from 'antd';
-
+import './index.css';
 const CocktailsAlcoholic = () => {
     
     const [cocktails, setCocktails] = useState([]);
@@ -31,28 +31,24 @@ const CocktailsAlcoholic = () => {
        
         const { Meta } = Card;
       
-         const gridStyle = {
-              width: '25%'
-            };
+        
 
     return (
         <div className="cocktail">
-        <div>
+            
+               <div>
               
-               
-                
-
-                    <Card  className="card" loading={loading}>
+                    <Card   loading={loading}>
                           {cocktails['drinks'] && cocktails['drinks'].map((result) =>
 
                      
-                          <Card.Grid  style={gridStyle} className="grid" key={result.idDrink}>
+                          <Card.Grid className="grid"  key={result.idDrink}>
                          
-                           <Link  to={`/cocktail/${result.strDrink}`} target="_parent" key={result.idDrink}>
+                           <Link   to={`/cocktail/${result.strDrink}`} target="_parent" key={result.idDrink}>
                                       <p>{result.strDrink}</p>
                            </Link>
-                            <Image
-                              width={200}
+                            <Image  className="grid_name"
+                              
                               src={`${result.strDrinkThumb}`} alt="cocktail"
                             />
                           </Card.Grid>
@@ -60,10 +56,11 @@ const CocktailsAlcoholic = () => {
                       )} 
                     </Card>  
                                      
-        </div>
-       <BackTop>
-           <div className="up">UP</div>
-         </BackTop>
+                 </div>
+
+                   <BackTop>
+                     <div className="up">UP</div>
+                   </BackTop>
         </div>
     )
 }

@@ -1,7 +1,7 @@
   
 import axios from 'axios';
 import qs from 'qs';
-import cookie from 'react-cookies';
+//import cookie from 'react-cookies';
 const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Accept': 'application/json'
@@ -15,7 +15,7 @@ export default {
 
     deleteUser: () => { 
         axios.defaults.withCredentials = true;
-        return axios.delete( API_URL + '/deleteAccount', {headers: headers})
+        return axios.delete( API_URL + '/delete-account', {headers: headers})
     },
 
     infoUser: () => { 
@@ -62,10 +62,13 @@ export default {
         axios.defaults.withCredentials = true;
         return axios.get( API_URL + '/')
     }, 
-
+    resendToken: (formState) => {
+        // @ts-ignore 
+        return axios.post( API_URL + '/resend', qs.stringify(formState))
+    },
     resetPassword: (formState) => {
         // @ts-ignore 
-        return axios.get( API_URL + '/reset-password', qs.stringify(formState))
+        return axios.post( API_URL + '/reset-password', qs.stringify(formState))
     },
 
     signupUser: (formState) => {

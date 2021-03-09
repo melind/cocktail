@@ -1,11 +1,9 @@
 .account {
-    border: yellow solid 2px;
-   
+   /* border: yellow solid 2px;*/
+   height: 55vh;
 }
 
 .count {
-    position: absolute;
-    z-index: 2;
-    margin-top: -300px;
+   
     
 }

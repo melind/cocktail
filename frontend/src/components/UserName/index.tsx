@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 //import './index.css';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {Input} from 'antd';
 // component = function return element to display
 const UserName = ({pseudo, update, error, onSubmit, init}) => {
-    const history = useHistory();
+    const URL_ACCOUNT = process.env.REACT_APP_URL_ACCOUNT;
     init();
 
    
@@ -24,8 +24,8 @@ const UserName = ({pseudo, update, error, onSubmit, init}) => {
  const handleSubmit = (e) => {
         e.preventDefault();
         
-        onSubmit(formState);
-        history.push("/compte");
+        onSubmit(formState); 
+        window.location.replace(URL_ACCOUNT||"http://localhost:3000/account");
     }
 
            
@@ -34,13 +34,13 @@ const UserName = ({pseudo, update, error, onSubmit, init}) => {
 
     return (
 
-        <div className="setAccount">
+        <div className="setAccount form" >
         <h1>Modifier votre pseudo</h1>
-        <Link to="/compte" className="return">  Retour </Link>
-         <form onSubmit={handleSubmit} action="/updatepseudo" method="POST" >
+        <Link to="/account" className="return">  Back </Link>
+         <form onSubmit={handleSubmit} action="/update-pseudo" method="POST" >
           <Input className="input" name="pseudo" placeholder="Entrer votre pseudo" onChange={handleChange} value={formState.pseudo} required></Input>
          
-          <button  type="submit" >< img src="../../../images/clap2.png" alt="un clap de cinéma " /></button>
+          <button  type="submit" >Submit</button>
 
           <p> {error}</p>
 

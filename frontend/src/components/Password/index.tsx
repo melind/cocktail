@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 //import './index.css';
-import { Redirect, Link, useHistory } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import  displayError  from '../../lib/validationPassword';
 import {Input} from 'antd';
 // component = function return element to display
 const Password = ({password, error, onSubmit, init}) => {
-    const history = useHistory();
+    const URL_ACCOUNT = process.env.REACT_APP_URL_ACCOUNT;
     init();
 
     console.log("states come from update:", password, error);
@@ -28,7 +28,7 @@ const Password = ({password, error, onSubmit, init}) => {
         
         if (!result[0]) { 
           onSubmit(formState);
-           <Redirect to="/compte" />
+           window.location.replace(URL_ACCOUNT||"http://localhost:3000/account");
         }
       
        
@@ -39,13 +39,13 @@ const Password = ({password, error, onSubmit, init}) => {
 
     return (
 
-        <div className="setAccount">
-        <h1>Modifier votre mot de passe</h1>
-        <Link to="/compte" className="return"> Retour </Link>
+        <div className="setAccount form">
+        <h1>Set your password</h1>
+        <Link to="/account" className="return"> Back </Link>
          <form onSubmit={handleSubmit} action="/update-password" method="POST" >
           <Input className="input" name="password" type="password" placeholder="Entrer votre password" onChange={handleChange} value={formState.password} required></Input>
          
-          <button type="submit"  >< img src="../../../images/clap2.png" alt="clap de cinéma " /></button>
+          <button type="submit"  >Submit</button>
 
           <p>  {result} {error}</p>
         </form>

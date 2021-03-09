@@ -8,18 +8,15 @@ export default function (request: Request, response: Response, next: NextFunctio
   if ( ['/account','/update-mail','/update-password', 'update-user-name','/logout'].includes(request.url) ) {
     const token: any = request.cookies.jwt;
      // @ts-ignore
-    const csrf: any = request.session.csrf;
-    
-  } else {
-
-    next();
-    
+    const csrf: any = request.session.csrf;console.log("aut",token,csrf);
+ 
     try {
        // @ts-ignore
       const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
          // @ts-ignore
         if (decodedToken && csrf) {
-        
+           // @ts-ignore
+        console.log("au",token,csrf);
 
         next();
       } else {
@@ -27,9 +24,11 @@ export default function (request: Request, response: Response, next: NextFunctio
       }
     } catch (error) {
       
-      response.clearCookie('jwt');
+      
       response.status(401).end();
     }
-    
+    } else {
+
+    response.status(401).end();
   }
 }

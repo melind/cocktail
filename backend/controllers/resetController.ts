@@ -32,7 +32,7 @@ export default class ResetController {
         if (!mail) {
             //Le cas où l'email ou bien le password ne serait pas soumit ou nul
                       response.status(400).json({
-                                                 text: "Requête invalide"
+                                                 text: "Requst invalid"
                                                  });       
                     
                      
@@ -45,7 +45,7 @@ export default class ResetController {
          
            if (!regexMail) {
              response.status(400).json({
-                                         text: "Format de mail invalide"
+                                         text: "Mail format invalid"
                                         });   
             }
          
@@ -58,7 +58,7 @@ export default class ResetController {
 
               if (!user) {
                         response.status(400).json({
-                          text: "Cet utilisateur n'existe pas"
+                          text: "User don't exist"
                         }); 
                          
                     } 
@@ -91,20 +91,20 @@ export default class ResetController {
                     
                     let passwordResetTokenMail = passwordResetToken.replace(regex, "%2F");
                     let mailOptions = { 
-                      from: 'no-reply@events-world-wide.fr', 
+                      from: 'no-reply-cocktail@pechemelba.fr', 
                       to: user.mail, 
                       subject: 'Réinitialisation de votre mot de passe', 
-                      html: '<html><body>Vous recevez ce message parce que vous (ou quelqu\'un d\'autre) a fait une demande de réinitialisation de mot de passe pour ce compte.</br></br>' +
-                            'S\'il vous plaît, cliquer sur ce lien, ou copiez le dans votre navigateur pour compléter le processus : ' +
-                            '<a href="http://'+ request.headers.host + '\/new-password\/' + passwordResetTokenMail + ' ">Cliquez ici</a>.</br></br>' +
-                            'Si vous n\'êtes pas à l\'origine de cette demande, s\'il vous plaît ignorez cet e-mail et votre mot de passe restera inchangé.</br></br>Events World Wide</body></html>'
+                      html: '<html><body>You recieve this e-mail beacause you (or someone else) ask to reset the password.</br></br>' +
+                            'Please, click to the link, or past it in your browser to finish the process : ' +
+                            '<a href="http://'+ request.headers.host + '\/new-password\/' + passwordResetTokenMail + ' ">Click here</a>.</br></br>' +
+                            'If you have not ask for this reset, please ignore this e-mail and your password will be unchanged.</br></br>Cocktail</body></html>'
                        };
                     // @ts-ignore
                     transporter.sendMail(mailOptions, function (err) {
                         if (err) { 
                           return response.status(500).json({ err}); 
                        }
-                        response.status(200).json('Un e-mail de reinitialisation a été envoyé à ' + user.mail + '.');
+                        response.status(200).json('An e-mail reset as been send to ' + user.mail + '.');
                     });
 
                   });
@@ -129,12 +129,12 @@ export default class ResetController {
               
               const user = await User.findOne({ passwordResetToken: passwordResetToken });
                 
-               if (!user) return response.status(400).json("pas de user trouvé"+
+               if (!user) return response.status(400).json("user not found"+
                                                        passwordResetToken); 
 
                 response.status(200).json({
                                                        //user,
-                                                       text: "Accès autorisé Modifications password!"
+                                                       text: "Access autorised for Modificate password!"
                                                       });
                 
               
@@ -178,17 +178,17 @@ export default class ResetController {
                     });
                     
                     let mailOptions = { 
-                      from: 'no-reply@events-world-wide.fr', 
+                      from: 'no-reply-cocktail@pechemelba.fr', 
                       to: user.mail, 
-                      subject: 'Mot de passe réinitialisé', 
-                      text: 'Votre mot de passe a bien été réinitialisé ! \n\n Events World Wide '
+                      subject: 'Reset Password', 
+                      text: 'Reset password success ! \n\n Cocktail '
                     };
                     // @ts-ignore
                     transporter.sendMail(mailOptions, function (err) {
                         if (err) { 
                           return response.status(500).json({ err}); 
                        }
-                       response.status(200).json('Mot de passe changé ! ' );
+                       response.status(200).json('Password change ! ' );
                     });
 
                 

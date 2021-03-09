@@ -83,7 +83,7 @@ const CocktailInfo = (props) => {
                                     <Col span={8}>
                                       <Card title="images" bordered={false}>
                                         {ingredient.map((result) => 
-                                         <Image.PreviewGroup>
+                                         <Image.PreviewGroup >
                                          
                                                 <Image
                                                   width={100}

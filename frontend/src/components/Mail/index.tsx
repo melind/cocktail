@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import {Link, useHistory } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import  displayError  from '../../lib/validationMail';
 import {Input} from 'antd';
 // component = function return element to display
 const Mail = ({mail,  error, onSubmit, init}) => {
-    const history = useHistory();
+    const URL_ACCOUNT = process.env.REACT_APP_URL_ACCOUNT;
 
     init();
 
@@ -30,7 +30,7 @@ const Mail = ({mail,  error, onSubmit, init}) => {
       
         if (!result[0]) { 
           onSubmit(formState);
-           history.push("/compte");
+           window.location.replace(URL_ACCOUNT||"http://localhost:3000/account");
         }
         
         
@@ -41,13 +41,13 @@ const Mail = ({mail,  error, onSubmit, init}) => {
 
     return (
 
-        <div className="setAccount">
-        <h1>Modifier votre e-mail</h1>
-        <Link to="/compte" className="return"> Retour </Link>
+        <div className="setAccount form">
+        <h1>Set your e-mail</h1>
+        <Link to="/account" className="return"> Back </Link>
          <form onSubmit={handleSubmit} action="/update-mail" method="POST" >
-          <Input className="input" name="mail" placeholder="Entrer votre mail" onChange={handleChange} value={formState.mail} required></Input>
+          <Input className="input" name="mail" placeholder="Enter votre mail" onChange={handleChange} value={formState.mail} required></Input>
          
-          <button type="submit" >< img src="../../../images/clap2.png" alt="un clap de cinéma " /></button>
+          <button type="submit" >Submit</button>
 
           <p> {result}  {error}</p>
         </form>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 //import './index.css';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import  displayError  from '../../lib/validationPassword';
 import {Input} from 'antd';
 // component = function return element to display
 const NewPassword = ({password, error, onSubmit, init}) => {
-    const history = useHistory();
+ 
     init();
 
     console.log("states come from update:", password, error);
@@ -28,8 +28,7 @@ const NewPassword = ({password, error, onSubmit, init}) => {
         
         if (!result[0]) { 
           onSubmit(formState);
-           history.push("/");
-         
+        
         }
       
        
@@ -41,12 +40,12 @@ const NewPassword = ({password, error, onSubmit, init}) => {
 
     return (
 
-        <div className="setAccount">
-        <h1>Modifier votre mot de passe</h1>
+        <div className="setAccount form">
+        <h1>Set your password</h1>
          <form onSubmit={handleSubmit} action="/newPassword" method="POST" >
           <Input className="input" name="password" type="password" placeholder="Entrer votre password" onChange={handleChange} value={formState.password} required></Input>
          
-          <button type="submit"  >< img src="../../../images/clap2.png" alt="clap de cinéma " /></button>
+          <button type="submit"  >Submit</button>
 
           <p>  {result} {error}</p>
         </form>

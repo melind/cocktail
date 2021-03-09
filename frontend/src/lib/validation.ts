@@ -7,14 +7,14 @@ const displayError = (props) => {
              presence: true,
              format: {
                pattern: /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/,
-               message: ": Format invalide"
+               message: ": Format invalid"
              }
            },
            password: {
              presence: true,
              length: {
                minimum: 8,
-               message: ": Doit contenir au moins 8 caractères"
+               message: ": Password must have at least 8 characters"
              }
            },
            pseudo: {
@@ -28,7 +28,7 @@ const displayError = (props) => {
        //result = undefined if input is empty so let error for pseudo
        const result = validate(props, constraints);
        if (result)
-       console.log("result: ",result);
+       
    
       return [result.mail, " ", result.password];
   } 
