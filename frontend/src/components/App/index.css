@@ -1,0 +1,56 @@
+.App {
+  text-align: center;
+ /* border: black solid 2px;*/
+  /*height: 100%;*/
+}
+
+.App-logo {
+  /*height: 40vmin;*/
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  /*border: red solid 2px;
+  width: 97%;*/
+  /*min-height: 100vh;
+  border: black solid 2px;
+  font-family: 'Curlz MT';
+  font-size: calc(10px + 2vmin);
+  /*color: white;*/
+}
+
+.brand-header {
+  /*border: red solid 2px;*/
+  display: flex;
+  justify-content: space-between;
+}
+.brand-name {
+ /* border: green solid 2px;*/
+}
+.authentification {
+  /*border: green solid 2px;*/
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.authentificated {
+  /*border: blue solid 2px;*/
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+}
+
+.auth {
+  display: none;
+}
+.un {
+  display: block;
+}
