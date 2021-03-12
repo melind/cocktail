@@ -1,20 +1,18 @@
-import {Request, Response} from 'express';
+exports.__esModule = true;
+var User = require ('../models/user');
 
-import {User, IUser} from '../models/user';
+var nodemailer = require ('nodemailer');
+var aws = require ('aws-sdk');
 
-import nodemailer from 'nodemailer';
+var jsonwebtoken = require ('jsonwebtoken');
 
-import aws from 'aws-sdk';
+ class DeleteController {
 
-import * as jsonwebtoken from 'jsonwebtoken';
-
-export default class DeleteController {
-
- static async deleteAccount(request: Request, response: Response) {
+ static async deleteAccount(request, response) {
 
         // get user info from jwt
            
-         const token: any = request.cookies.jwt;
+         const token = request.cookies.jwt;
          if (!token) {
                       response.status(400).json({
                         text: "No user coockie"
@@ -22,12 +20,12 @@ export default class DeleteController {
             }
            if(token){ 
 
-           const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
+           const decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
            const pseudo = decodedToken.nickname
 
           //get user corresponding in data base for remove it
           let mail_user_delete;
-           const user: IUser  = await User.findOne({pseudo});
+           const user  = await User.findOne({pseudo});
                if(user) {
                  mail_user_delete = user.mail;
                   //@ts-ignore
@@ -78,13 +76,13 @@ export default class DeleteController {
             }
  }  
 
- static async deleteOtherAccount(request: Request, response: Response) {
+ static async deleteOtherAccount(request, response) {
 
       // get user info from jwt
         let user_to_delete = request.params.user; 
         console.log(user_to_delete)
         let pseudo = user_to_delete;
-         const token: any = request.cookies.jwt;
+         const token = request.cookies.jwt;
          if (!token) {
                       response.status(400).json({
                         text: "No user coockie"
@@ -92,14 +90,14 @@ export default class DeleteController {
             }
            if(token){ 
 
-           const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
+           const decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
            const mail = decodedToken.mail
           if (mail === process.env.MAIL) {
 
           
           //get user corresponding in data base for remove it
             //@ts-ignore
-           const user: IUser  = await User.findOne({pseudo});
+           const user  = await User.findOne({pseudo});
                if(user) { //@ts-ignore
                          user.remove((error, product) => {
                             if (error) {
@@ -124,3 +122,4 @@ export default class DeleteController {
 } 
  
 }
+exports["default"] = DeleteController;

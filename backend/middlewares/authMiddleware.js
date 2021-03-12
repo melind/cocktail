@@ -1,22 +1,24 @@
-import {Request, Response, NextFunction} from 'express';
 
-import * as jsonwebtoken from 'jsonwebtoken';
-export default function (request: Request, response: Response, next: NextFunction) {
+exports.__esModule = true;
+
+var jsonwebtoken = require("jsonwebtoken");
+
+function default_1 (request, response, next) {
   // check cookie presence and good jwt
 
   // no need to check for this pages so we get their url (http://....)
   if ( ['/account','/update-mail','/update-password', 'update-user-name','/logout'].includes(request.url) ) {
-    const token: any = request.cookies.jwt;
+    const token = request.cookies.jwt;
      // @ts-ignore
-    const csrf: any = request.session.csrf;console.log("aut",token,csrf);
+    const csrf= request.session.csrf;
  
     try {
        // @ts-ignore
-      const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
+      const decodedToken= jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
          // @ts-ignore
         if (decodedToken && csrf) {
            // @ts-ignore
-        console.log("au",token,csrf);
+        
 
         next();
       } else {
@@ -32,3 +34,5 @@ export default function (request: Request, response: Response, next: NextFunctio
     response.status(401).end();
   }
 }
+
+exports["default"] = default_1;

@@ -1,13 +1,12 @@
-import {Request, Response} from 'express';
-import {User, IUser} from '../models/user';
-import * as jsonwebtoken from 'jsonwebtoken';
+exports.__esModule = true;
+var jsonwebtoken = require ('jsonwebtoken');
 
-export default class homeController {
+class homeController {
 
- static async pseudoUser(request: Request, response: Response) {
+ static async pseudoUser(request, response) {
 
            //get info in thejwt
-           const token: any = request.cookies.jwt;
+           const token = request.cookies.jwt;
            if (!token) {
                       response.status(400).json({
                         text: "No user coockie"
@@ -15,7 +14,7 @@ export default class homeController {
            } 
            if(token){ 
 
-              const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
+              const decodedToken= jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
               const pseudo = decodedToken.nickname;
 
             
@@ -29,3 +28,4 @@ export default class homeController {
           
     } 
 }
+exports["default"] = homeController;

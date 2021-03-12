@@ -1,17 +1,18 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cookieparser from 'cookie-parser';
-import expressSession from 'express-session';
+exports.__esModule = true;
+var express = require(  'express');
+var mongoose = require(  'mongoose');
+var cookieparser = require(  'cookie-parser');
+var expressSession = require(  'express-session');
 
-import router from './router';
+var router = require(  './router');
 
-import cors from 'cors';
+var cors = require(  'cors');
 
-import hsts from 'hsts';
+var hsts = require(  'hsts');
 
-import nodemailer from 'nodemailer';
+var nodemailer = require(  'nodemailer');
 
-const app: express.Express = express();
+var app = express();
 const SERVER_PORT  = process.env.SERVER_PORT || 5050;
 const URL_CORS = process.env.URL_CORS || "https://cocktail.pechemelba.fr/";
 const MONGODB_URI = process.env.MONGODB_URI || '';
@@ -36,10 +37,10 @@ app.use(cors({
 }));
 
 app.use(function(req, res, next) {
-    res.setHeader("Content-Security-Policy", " img-src *; frame-ancestors 'none' ");// 'https://cocktail.pechemelba.fr:443' 'self' allow data from own site and the api   add frame-ancestors to avoid display another page in a iframe
+    res.setHeader("Content-Security-Policy", " img-src *; frame-ancestors 'none' ");// 'https://cocktail.pechemelba.fr:443' 'self' allow data = require(  own site and the api   add frame-ancestors to avoid display another page in a iframe
                   res.setHeader("X-Content-Type-Options","nosniff");//avoid to upload a file into the server passing it off as another mime (ex: an html for a jpeg)
                   res.setHeader("Referrer-Policy", "origin");
-                   //if no-referer don't show the url in referer where a request is made from (=the last page before the request) use for stat
+                   //if no-referer don't show the url in referer where a request is made = require(  (=the last page before the request) use for stat
                                   //( for passwor reset by exemple dont' show the tokenrestpassword in the header referer")
                                   // origin just show events-....fr/ for all the page
     return next();
@@ -50,10 +51,10 @@ app.use(hsts({
 }))
 
 
-app.use(router);
+app.use(router["default"]);
 
 async function run() {
-  await mongoose.connect(MONGODB_URI, {useNewUrlParser : true}, (err: any) => {
+  await mongoose.connect(MONGODB_URI, {useNewUrlParser : true}, (err) => {
     if (err) {
       return;
     }

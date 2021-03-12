@@ -1,33 +1,26 @@
-import {Request, Response} from 'express';
+exports.__esModule = true;
+var User = require ('../models/user');
 
-import {User, IUser} from '../models/user';
+var Token = require ('../models/token');
 
-import {Token, IToken} from '../models/token';
+var  bcrypt = require ('bcryptjs');
+var jsonwebtoken = require ('jsonwebtoken');
+var  htmlspecialchars = require ('htmlspecialchars');
 
-import * as bcrypt from 'bcryptjs';
-
-import * as jsonwebtoken from 'jsonwebtoken';
-
-import  htmlspecialchars from 'htmlspecialchars';
-
-import nodemailer from 'nodemailer';
-
-import aws from 'aws-sdk';
+var nodemailer = require ('nodemailer');
+var aws = require ('aws-sdk');
 
 
-export default class AuthController { 
 
-  pseudo: string;
-  mail: string;
-  password: string;  
-  date: Date;
-  admin: boolean;
+ class AuthController { 
+
+ 
 
   /** static permet nom_classs.nom_methode = AuthController.getSignup */
     
 
 
-    static postSignup(request: Request, response: Response) {
+    static postSignup(request, response) {
 
         /*-----------------   data of the form   -----------------*/
         let {pseudo, mail, password}  = request.body;
@@ -81,7 +74,7 @@ export default class AuthController {
         password = bcrypt.hashSync(password, 10);
 
                 // Creation of a document User
-        const newUser: IUser = new User({pseudo, mail, password, date, admin}); 
+        const newUser = new User({pseudo, mail, password, date, admin}); 
 
                 // Save in the database
         newUser.save( (error, product) => {
@@ -137,7 +130,7 @@ export default class AuthController {
 
 
 
-    static async userConfirmation(request: Request, response: Response) {
+    static async userConfirmation(request, response) {
             // Find a matching token
             let token_mail = request.params.token;
             //@ts-ignore
@@ -160,7 +153,7 @@ export default class AuthController {
     }
 
 
-    static async resendToken(request: Request, response: Response) {
+    static async resendToken(request, response) {
             
       User.findOne({ mail: htmlspecialchars(request.body.mail) }, function (err, user) {
           if (!user) return response.status(400).json({ msg: 'We were unable to find a user with that email.' });
@@ -200,7 +193,7 @@ export default class AuthController {
       });
   }
 
-    static async postLogin(request: Request, response: Response) {
+    static async postLogin(request, response) {
 
         /*-----------------   data of the form   -----------------*/
         /* when a promise encounters an error it throws 
@@ -224,7 +217,7 @@ export default class AuthController {
 
                 //  verify the pseudo 
       
-                const user: IUser  = await User.findOne({pseudo});
+                const user  = await User.findOne({pseudo});
                  
 
                     if (!user) {
@@ -301,7 +294,7 @@ export default class AuthController {
 
 
     
-    static logout(request: Request, response: Response) {
+    static logout(request, response) {
           //destroy token by destroying cookie
         response.clearCookie('jwt');
         
@@ -320,3 +313,4 @@ export default class AuthController {
              
     }
 }
+exports["default"] = AuthController;

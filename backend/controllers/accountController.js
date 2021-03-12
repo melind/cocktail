@@ -1,23 +1,17 @@
-import {Request, Response} from 'express';
+exports.__esModule = true;
+var User = require ('../models/user');
+var bcrypt = require ('bcryptjs');
+var  jsonwebtoken = require ('jsonwebtoken');
+var  htmlspecialchars = require ('htmlspecialchars');
 
-import {User, IUser} from '../models/user';
+ class AccountController {
 
-import * as bcrypt from 'bcryptjs';
+  
 
-import * as jsonwebtoken from 'jsonwebtoken';
-
-import  htmlspecialchars from 'htmlspecialchars';
-
-export default class AccountController {
-
-  pseudo: string;
-  mail: string;
-  password: string;
-
-    static async displayAccount(request: Request, response: Response) {
+    static async displayAccount(request, response) {
 
            //get info in thejwt
-           const token: any = request.cookies.jwt;
+           const token = request.cookies.jwt;
            if (!token) {
                       response.status(400).json({
                         text: "No user coockie"
@@ -25,11 +19,11 @@ export default class AccountController {
            } 
            if(token){ 
 
-              const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
+              const decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
               const pseudo = decodedToken.nickname;
             try { 
               // get user corresponding in data base 
-              const user: IUser  = await User.findOne({pseudo});
+              const user  = await User.findOne({pseudo});
                  if (user) {
                  response.status(200).json({
                                          user,
@@ -49,7 +43,7 @@ export default class AccountController {
 
       
 
-      static async updatePseudo(request: Request, response: Response) {
+      static async updatePseudo(request, response) {
 
 
         /*-----------------   data of the form   -----------------*/
@@ -69,7 +63,7 @@ export default class AccountController {
                    pseudo = pseudo.replace(/ /g,""); 
                    pseudo = htmlspecialchars(pseudo);
               
-                   const token: any = request.cookies.jwt;
+                   const token = request.cookies.jwt;
 
                    if (!token) {
                               response.status(400).json({
@@ -79,7 +73,7 @@ export default class AccountController {
 
                    else{ 
 
-                       const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
+                       const decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
                        const name = decodedToken.nickname;
                    
                   
@@ -87,7 +81,7 @@ export default class AccountController {
         /*------------------  Update of a  user -- -----------*/
 
          
-                       const oldUser: IUser  = await User.findOne({"pseudo":name});
+                       const oldUser  = await User.findOne({"pseudo":name});
                        if (oldUser) {
                           // @ts-ignore
                            oldUser.updateOne({pseudo},async (error, product) => {
@@ -138,7 +132,7 @@ export default class AccountController {
 
 
 
-         static async updateMail(request: Request, response: Response) {
+         static async updateMail(request, responsee) {
 
 
 
@@ -170,7 +164,7 @@ export default class AccountController {
                         });   
                     }
                     if (regexMail) { 
-                      const token: any = request.cookies.jwt;
+                      const token = request.cookies.jwt;
 
                       if (!token) {
                                  response.status(400).json({
@@ -180,7 +174,7 @@ export default class AccountController {
 
                       if(token){ 
                       
-                          const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
+                          const decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
                           const name = decodedToken.nickname;
                    
                
@@ -188,7 +182,7 @@ export default class AccountController {
         /*------------------  Update of a  user -- -----------*/
 
          
-                          const oldUser: IUser  = await User.findOne({"pseudo":name});
+                          const oldUser  = await User.findOne({"pseudo":name});
                           if (oldUser) {
                              // @ts-ignore
                               oldUser.updateOne({mail},async (error, product) => {
@@ -238,7 +232,7 @@ export default class AccountController {
       }    
 
 
-        static async updatePassword(request: Request, response: Response) {
+        static async updatePassword(request, response) {
 
 
 
@@ -268,7 +262,7 @@ export default class AccountController {
                   
                    password = bcrypt.hashSync(password, 10);
               
-                   const token: any = request.cookies.jwt;
+                   const token = request.cookies.jwt;
 
                    if (!token) {
                               response.status(400).json({
@@ -278,7 +272,7 @@ export default class AccountController {
 
                    if(token){ 
 
-                       const decodedToken: any = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
+                       const decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
                        const name = decodedToken.nickname;
                    
                
@@ -286,7 +280,7 @@ export default class AccountController {
         /*------------------  Update of a  user -- -----------*/
 
          
-                       const oldUser: IUser  = await User.findOne({"pseudo":name});
+                       const oldUser  = await User.findOne({"pseudo":name});
                        if (oldUser) {
                           // @ts-ignore
                            oldUser.updateOne({password},async (error, product) => {
@@ -335,3 +329,4 @@ export default class AccountController {
        
 
 }
+exports["default"] = AccountController;

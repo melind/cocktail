@@ -1,23 +1,19 @@
-import {Request, Response} from 'express';
+exports.__esModule = true;
+var User = require ('../models/user');
 
-import {User, IUser} from '../models/user';
+var Token = require ('../models/token');
 
-import {Token, IToken} from '../models/token';
+var  bcrypt = require ('bcryptjs');
+var jsonwebtoken = require ('jsonwebtoken');
+var  htmlspecialchars = require ('htmlspecialchars');
 
-import * as bcrypt from 'bcryptjs';
-
-import * as jsonwebtoken from 'jsonwebtoken';
-
-import  htmlspecialchars from 'htmlspecialchars';
-
-import nodemailer from 'nodemailer';
-
-import aws from 'aws-sdk';
+var nodemailer = require ('nodemailer');
+var aws = require ('aws-sdk');
 
 
-export default class ResetController {
+ class ResetController {
 
-    static async resetPassword(request: Request, response: Response) {
+    static async resetPassword(request, response) {
 
      try{ 
 
@@ -54,7 +50,7 @@ export default class ResetController {
             
         /*------------------  find the user -- -----------*/
 
-              const user: IUser  = await User.findOne({"mail":mail});
+              const user  = await User.findOne({"mail":mail});
 
               if (!user) {
                         response.status(400).json({
@@ -120,7 +116,7 @@ export default class ResetController {
           
     }
 
-    static async editFormPassword(request: Request, response: Response) {
+    static async editFormPassword(request, response) {
               
 
               let passwordResetToken = request.params.passwordResetToken;
@@ -140,7 +136,7 @@ export default class ResetController {
               
     }
 
-    static async newPassword(request: Request, response: Response) {
+    static async newPassword(request, response) {
         
         try{ 
 
@@ -201,3 +197,4 @@ export default class ResetController {
           }
     }
 }
+exports["default"] = ResetController;

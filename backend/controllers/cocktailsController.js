@@ -1,12 +1,13 @@
-import {Request, Response} from 'express';
-import axios from 'axios';
-import  htmlspecialchars from 'htmlspecialchars';
-export default class cocktailsController {
+exports.__esModule = true;
+var  axios = require (  'axios');
+var   htmlspecialchars = require (  'htmlspecialchars');
+
+ class cocktailsController {
  
 
 
 
-    static async cocktail(request: Request, response: Response) {
+    static async cocktail(request, response) {
 
             try{ 
 
@@ -34,7 +35,7 @@ export default class cocktailsController {
           
     }
  
-    static async cocktailsSearchByIngredient(request: Request, response: Response) {
+    static async cocktailsSearchByIngredient(request, response) {
         
         try { 
 
@@ -61,7 +62,7 @@ export default class cocktailsController {
           
     }
 
-      static async cocktailsRandom(request: Request, response: Response) {
+      static async cocktailsRandom(request, response) {
 
          try { 
 
@@ -88,7 +89,7 @@ export default class cocktailsController {
           
     }
 
-       static async cocktailsAlcoholic(request: Request, response: Response) {
+       static async cocktailsAlcoholic(request, response) {
 
           try{ 
 
@@ -117,7 +118,7 @@ export default class cocktailsController {
       
     }
 
-    static async cocktailsNonAlcoholic(request: Request, response: Response) {
+    static async cocktailsNonAlcoholic(request, response) {
 
         try { 
             const API_KEY = process.env.API_KEY
@@ -146,3 +147,4 @@ export default class cocktailsController {
     }
 
 }
+exports["default"] = cocktailsController;

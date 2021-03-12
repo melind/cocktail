@@ -1,13 +1,12 @@
-import {Request, Response} from 'express';
+exports.__esModule = true;
+var User = require ('../models/user');
 
-import {User, IUser} from '../models/user';
 
+ class AdminController {
 
-export default class AdminController {
+    static async usersList(request, response) {
 
-    static async usersList(request: Request, response: Response) {
-
-        const users: IUser[]  = await User.find();
+        const users  = await User.find();
 
         if (!users) {
                         response.status(400).json({
@@ -24,3 +23,4 @@ export default class AdminController {
     }
 
 }
+exports["default"] = AdminController;
