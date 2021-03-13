@@ -69,7 +69,7 @@ const Nav = () => {
                       
 
                       <Menu.Item key="home">
-                          <Link to="/home"> Accueil </Link>
+                          <Link to="/"> Accueil </Link>
                         </Menu.Item>
 
                         <Menu.Item key="cocktailA">

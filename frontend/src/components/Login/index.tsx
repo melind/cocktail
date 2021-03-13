@@ -31,7 +31,7 @@ const Login = ({pseudo, password, onSubmit, loggedin, error, init}) => {
      //create local.sotorage
      userAPI.login();
      setTimeout(function () {
-      window.location.replace(URL||"http://localhost:3000/home");
+      window.location.replace(URL||"http://localhost:3000/");
     }, 1000);
    }
      

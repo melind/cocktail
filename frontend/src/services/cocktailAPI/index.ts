@@ -17,7 +17,7 @@ export default {
     
     cocktailRandom: () => {
         axios.defaults.withCredentials = false;
-        return axios.get( API_URL + '/home')
+        return axios.get( API_URL + '/')
         },
 
     cocktailsA: () => {
@@ -31,11 +31,6 @@ export default {
     cocktailsNA: () => {
        axios.defaults.withCredentials = true;
        return axios.get( API_URL + '/cocktails_non_alcoholic')
-       },  
-/*
-    search: (search) => {
-     axios.defaults.withCredentials = true;
-     return axios.post( API_URL + '/home', qs.stringify(search),{headers: headers})
-    
-     }, */
+       }
+
 }
