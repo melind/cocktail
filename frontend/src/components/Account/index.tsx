@@ -21,7 +21,7 @@ const handleDelete = () => {
         setTimeout(function () {
            userAPI.logOut();
            userAPI.logout();
-           window.location.replace(URL||"http://localhost:3000/");
+           window.location.replace(URL||"http://localhost:3000/home");
          }, 1000);
 }
 

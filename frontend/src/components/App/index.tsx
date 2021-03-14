@@ -84,7 +84,8 @@ const App = () => {
       </header>
       <Nav />
       <Switch>
-        <PublicRoute restricted={false} path="/" exact component={Home}/>
+        <Redirect exact strict from="/" to="home" />
+        <PublicRoute restricted={false} path="/home" exact component={Home}/>
         <PublicRoute restricted={false} path="/cocktails_alcoholic" exact component={CocktailsAlcoholic}/>
         <PublicRoute restricted={false} path="/cocktails_non_alcoholic" exact component={CocktailsNonAlcoholic}/>
         <PublicRoute restricted={false} path="/cocktail/:cocktail_name" exact component={CocktailInfo}/>

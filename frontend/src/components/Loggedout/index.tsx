@@ -18,7 +18,7 @@ display();
   if(loggedout) {
   //clear local.storage
    userAPI.logout();
-     window.location.replace(URL||"http://localhost:3030/");
+     window.location.replace(URL||"http://localhost:3030/home");
    }
 
     return (

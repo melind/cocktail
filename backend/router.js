@@ -19,8 +19,8 @@ const router = express.Router();
 const bodyParser = bodyparser.urlencoded({extended: true});
 /*----------abortcontroller-------------------*/
 
-router.get('/', homeController["default"].pseudoUser, cocktailsController["default"].cocktailsRandom);
-
+router.get('/', homeController["default"].pseudoUser);
+router.get('/home', cocktailsController["default"].cocktailsRandom);
 router.get('/admin', adminMiddleware["default"], adminController["default"].usersList);
 
 router.post('/login', bodyParser, authController["default"].postLogin);
