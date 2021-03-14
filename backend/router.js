@@ -19,7 +19,7 @@ const router = express.Router();
 const bodyParser = bodyparser.urlencoded({extended: true});
 /*----------abortcontroller-------------------*/
 
-router.get('/', homeController["default"].pseudoUser);
+router.get('/', homeController["default"].pseudoUser, cocktailsController["default"].cocktailsRandom);
 
 router.get('/admin', adminMiddleware["default"], adminController["default"].usersList);
 
@@ -56,7 +56,7 @@ router.route('/update-user-name')
 
 router.get('/cocktail/:cocktail_name', cocktailsController["default"].cocktail);
 router.get('/cocktails_by_ingredient/:ingredient', cocktailsController["default"].cocktailsSearchByIngredient);
-router.get('/home', cocktailsController["default"].cocktailsRandom);
+
 router.get('/cocktails_alcoholic', cocktailsController["default"].cocktailsAlcoholic);
 router.get('/cocktails_Non_alcoholic', cocktailsController["default"].cocktailsNonAlcoholic); 
 
