@@ -39,7 +39,7 @@ app.use(cors({
 app.use(function(req, res, next) {
     res.setHeader("Content-Security-Policy", " img-src *; frame-ancestors 'none' ");// 'https://cocktail.pechemelba.fr:443' 'self' allow data = require(  own site and the api   add frame-ancestors to avoid display another page in a iframe
                   res.setHeader("X-Content-Type-Options","nosniff");//avoid to upload a file into the server passing it off as another mime (ex: an html for a jpeg)
-                  res.setHeader("Referrer-Policy", "origin");
+                  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
                    //if no-referer don't show the url in referer where a request is made = require(  (=the last page before the request) use for stat
                                   //( for passwor reset by exemple dont' show the tokenrestpassword in the header referer")
                                   // origin just show events-....fr/ for all the page
