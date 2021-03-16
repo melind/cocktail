@@ -9,3 +9,11 @@ node_modules
 
 cert.pem
 key.pem
+server.key
+server.crt
+rootCA.key
+rootCA.crt
+rootCa.srl
+myCA.pem
+myCA.key
+
