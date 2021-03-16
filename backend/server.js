@@ -16,7 +16,14 @@ var hsts = require(  'hsts');
 
 const credentials = {
   key: fs.readFileSync('./key.pem', 'utf8'),
-  cert: fs.readFileSync('./cert.pem', 'utf8')
+  cert: fs.readFileSync('./cert.pem', 'utf8'),
+  ca: [
+
+    fs.readFileSync('./myCA.key','utf8'),
+
+    fs.readFileSync('./myCA.pem','utf8')
+
+ ]
 };
 
 var app = express();
