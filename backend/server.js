@@ -1,6 +1,10 @@
 exports.__esModule = true;
 var express = require(  'express');
 var mongoose = require(  'mongoose');
+const https = require('https');
+const fs = require('fs');
+
+
 var cookieparser = require(  'cookie-parser');
 var expressSession = require(  'express-session');
 
@@ -10,7 +14,10 @@ var cors = require(  'cors');
 
 var hsts = require(  'hsts');
 
-var nodemailer = require(  'nodemailer');
+const credentials = {
+  key: fs.readFileSync('./key.pem', 'utf8'),
+  cert: fs.readFileSync('./cert.pem', 'utf8')
+};
 
 var app = express();
 const SERVER_PORT  = process.env.SERVER_PORT || 5050;
@@ -53,13 +60,16 @@ app.use(hsts({
 
 app.use(router["default"]);
 
+var httpsServer = https.createServer(credentials, app);
+
 async function run() {
   await mongoose.connect(MONGODB_URI, {useNewUrlParser : true}, (err) => {
     if (err) {
       return;
     }
+
     // lancer l'appli
-    app.listen(SERVER_PORT, () => {
+    httpsServer.listen(SERVER_PORT, () => {
       console.log(`App running on port ${SERVER_PORT}`);
     });
 
