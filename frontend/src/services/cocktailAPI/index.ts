@@ -17,7 +17,7 @@ export default {
     
     cocktailRandom: () => {
         axios.defaults.withCredentials = false;
-        return axios.get( API_URL + '/')
+        return axios.get( API_URL + '/home')
         },
 
     cocktailsA: () => {
