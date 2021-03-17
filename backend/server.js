@@ -15,19 +15,8 @@ var cors = require(  'cors');
 var hsts = require(  'hsts');
 
 const credentials = {
-  key: fs.readFileSync('myCA.key'),
-  cert: fs.readFileSync('myCA.pem'),
-  passphrase: process.env.PASSPHRASE
- /*  key: fs.readFileSync('./key.pem'),
-  cert: fs.readFileSync('./cert.pem'),*/
- 
- /* ca: [
-
-    fs.readFileSync('./myCA.key','utf8'),
-
-    fs.readFileSync('./myCA.pem','utf8'),
-
- ]*/
+  key: fs.readFileSync('cocktail.pechemelba.fr.key'),
+  cert: fs.readFileSync('cocktail.pechemelba.fr.crt'),
 };
 
 var app = express();

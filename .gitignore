@@ -13,7 +13,8 @@ server.key
 server.crt
 rootCA.key
 rootCA.crt
-rootCa.srl
+rootCA.srl
 myCA.pem
 myCA.key
+server.csr
 
