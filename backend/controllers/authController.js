@@ -73,7 +73,7 @@ var nodemailer = require ('nodemailer');
         password = bcrypt.hashSync(password, 10);
 
                 // Creation of a document User
-        const newUser = new User({pseudo, mail, password, date, admin}); 
+        const newUser = new user_1.User({pseudo, mail, password, date, admin}); 
 
                 // Save in the database
         newUser.save( (error, product) => {
@@ -154,7 +154,7 @@ var nodemailer = require ('nodemailer');
 
     static async resendToken(request, response) {
             
-      User.findOne({ mail: htmlspecialchars(request.body.mail) }, function (err, user) {
+      user_1.User.findOne({ mail: htmlspecialchars(request.body.mail) }, function (err, user) {
           if (!user) return response.status(400).json({ msg: 'We were unable to find a user with that email.' });
           if (user.isVerified) return response.status(400).json({ msg: 'This account has already been verified. Please log in.' });
    
