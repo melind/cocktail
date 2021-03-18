@@ -30,7 +30,7 @@ const Mail = ({mail,  error, onSubmit, init}) => {
       
         if (!result[0]) { 
           onSubmit(formState);
-           window.location.replace(URL_ACCOUNT||"http://localhost:3000/account");
+           window.location.replace(URL_ACCOUNT);
         }
         
         
