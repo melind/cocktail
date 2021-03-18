@@ -1,7 +1,7 @@
 exports.__esModule = true;
 
 var jsonwebtoken = require("jsonwebtoken");
-
+var mail = process.env.MAIL;
 function default_1(request, response, next) {
   // check cookie presence and good jwt
 
@@ -18,10 +18,9 @@ function default_1(request, response, next) {
       // @ts-ignore
       const decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
     // @ts-ignore
-        if ((decodedToken.mail === process.env.MAIL ) && csrf) {
+        if ((decodedToken.mail == mail ) && csrf) {
         
          // @ts-ignore
-       
         next();
       } else {
         
