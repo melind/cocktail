@@ -91,7 +91,7 @@ const App = () => {
         <PublicRoute restricted={false} path="/cocktail/:cocktail_name" exact component={CocktailInfo}/>
         <PublicRoute restricted={false} path="/cocktails_by_ingredient/:ingredient" exact component={CocktailsByIngredient}/>
         <PrivateRoute path="/account" exact component={Account}/>
-        <PrivateRoute path="/admin" exact  component={Admin}/>
+        <PrivateRoute path="/admin-938-kml" exact  component={Admin}/>
         <PublicRoute restricted={true} path="/login" exact  component={Login}/>
         <PublicRoute restricted={true} path="/forget-passord" exact  component={ForgetPassword}/>
         <PublicRoute restricted={true} path="/new-password/:passwordResetToken" exact  component={NewPassword}/>

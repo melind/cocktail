@@ -6,7 +6,7 @@ function default_1(request, response, next) {
   // check cookie presence and good jwt
 
   // no need to check for this pages so we get their url (http://....)
-  if ( ['/admin'].includes(request.url) ) {
+  if ( ['/admin-938-kml'].includes(request.url) ) {
        const token = request.cookies.jwt;
        // @ts-ignore
        const csrf = request.session.csrf; 

@@ -28,7 +28,7 @@ export default {
 
     isAdmin: () => { 
         axios.defaults.withCredentials = true;
-        return  axios.get( API_URL + '/admin')
+        return  axios.get( API_URL + '/admin-938-kml')
     },
 
     isAuth: () => {
