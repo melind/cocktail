@@ -1,8 +1,8 @@
 exports.__esModule = true;
-var User = require ('../models/user');
+var user_1 = require ('../models/user');
 
 var nodemailer = require ('nodemailer');
-var aws = require ('aws-sdk');
+
 
 var jsonwebtoken = require ('jsonwebtoken');
 
@@ -25,7 +25,7 @@ var jsonwebtoken = require ('jsonwebtoken');
 
           //get user corresponding in data base for remove it
           let mail_user_delete;
-           const user  = await User.findOne({pseudo});
+           const user  = await user_1.User.findOne({pseudo});
                if(user) {
                  mail_user_delete = user.mail;
                   //@ts-ignore
@@ -80,7 +80,7 @@ var jsonwebtoken = require ('jsonwebtoken');
 
       // get user info from jwt
         let user_to_delete = request.params.user; 
-        console.log(user_to_delete)
+        
         let pseudo = user_to_delete;
          const token = request.cookies.jwt;
          if (!token) {
@@ -97,7 +97,7 @@ var jsonwebtoken = require ('jsonwebtoken');
           
           //get user corresponding in data base for remove it
             //@ts-ignore
-           const user  = await User.findOne({pseudo});
+           const user  = await user_1.User.findOne({pseudo});
                if(user) { //@ts-ignore
                          user.remove((error, product) => {
                             if (error) {

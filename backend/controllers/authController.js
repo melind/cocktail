@@ -1,14 +1,13 @@
 exports.__esModule = true;
-var User = require ('../models/user');
+var user_1 = require ('../models/user');
 
-var Token = require ('../models/token');
+var token_1= require ('../models/token');
 
 var  bcrypt = require ('bcryptjs');
 var jsonwebtoken = require ('jsonwebtoken');
 var  htmlspecialchars = require ('htmlspecialchars');
 
 var nodemailer = require ('nodemailer');
-var aws = require ('aws-sdk');
 
 
 
@@ -88,7 +87,7 @@ var aws = require ('aws-sdk');
   
             else {
                   // Create a verification token for user
-                  let token = new Token({ userId: newUser._id, token: bcrypt.hashSync(process.env.TOKEN_WORD, 10)});
+                  let token = new token_1.Token({ userId: newUser._id, token: bcrypt.hashSync(process.env.TOKEN_WORD, 10)});
 
                   // Save the verification token
                   token.save(function (err) {
@@ -134,11 +133,11 @@ var aws = require ('aws-sdk');
             // Find a matching token
             let token_mail = request.params.token;
             //@ts-ignore
-            const token =  Token.findOne({ token: token_mail }, function (err, token) {
+            const token =  token_1.Token.findOne({ token: token_mail }, function (err, token) {
             if (!token) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
             
             // If we found a token, find a matching user
-            const user =  User.findOne({ _id: token.userId }, function (err, user) {
+            const user =  user_1.User.findOne({ _id: token.userId }, function (err, user) {
                 if (!user) return response.status(400).json({ msg: 'We were unable to find a user for this token.' });
                 if (user.isVerified) return response.status(400).json({ type: 'already-verified', msg: 'This user has already been verified.' });
             
@@ -160,7 +159,7 @@ var aws = require ('aws-sdk');
           if (user.isVerified) return response.status(400).json({ msg: 'This account has already been verified. Please log in.' });
    
           // Create a verification token, save it, and send email
-          let token = new Token({ userId: user._id, token: bcrypt.hashSync(process.env.TOKEN_WORD, 10) });
+          let token = new token_1.Token({ userId: user._id, token: bcrypt.hashSync(process.env.TOKEN_WORD, 10) });
      
           // Save the token
           token.save(function (err) {
@@ -217,7 +216,7 @@ var aws = require ('aws-sdk');
 
                 //  verify the pseudo 
       
-                const user  = await User.findOne({pseudo});
+                const user  = await user_1.User.findOne({pseudo});
                  
 
                     if (!user) {

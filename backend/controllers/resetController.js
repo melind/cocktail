@@ -1,14 +1,12 @@
 exports.__esModule = true;
-var User = require ('../models/user');
+var user_1 = require ('../models/user');
 
-var Token = require ('../models/token');
 
 var  bcrypt = require ('bcryptjs');
-var jsonwebtoken = require ('jsonwebtoken');
 var  htmlspecialchars = require ('htmlspecialchars');
 
 var nodemailer = require ('nodemailer');
-var aws = require ('aws-sdk');
+
 
 
  class ResetController {
@@ -50,7 +48,7 @@ var aws = require ('aws-sdk');
             
         /*------------------  find the user -- -----------*/
 
-              const user  = await User.findOne({"mail":mail});
+              const user  = await user_1.User.findOne({"mail":mail});
 
               if (!user) {
                         response.status(400).json({
@@ -125,7 +123,7 @@ var aws = require ('aws-sdk');
               if (!passwordResetToken) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
                 // Find a matching token  
               
-              const user = await User.findOne({ passwordResetToken: passwordResetToken });
+              const user = await user_1.User.findOne({ passwordResetToken: passwordResetToken });
                 
                if (!user) return response.status(400).json("user not found"+
                                                        passwordResetToken); 
@@ -150,7 +148,7 @@ var aws = require ('aws-sdk');
               if (!passwordResetToken) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
                 
                 // Find a matching token
-              const user = await User.findOne({ passwordResetToken: passwordResetToken }, async (err, product) => {
+              const user = await user_1.User.findOne({ passwordResetToken: passwordResetToken }, async (err, product) => {
                     if (err) { 
                       return response.status(500).json({ err }); }
                     });             

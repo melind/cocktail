@@ -1,5 +1,5 @@
 exports.__esModule = true;
-var User = require ('../models/user');
+var user_1= require ('../models/user');
 var bcrypt = require ('bcryptjs');
 var  jsonwebtoken = require ('jsonwebtoken');
 var  htmlspecialchars = require ('htmlspecialchars');
@@ -23,7 +23,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
               const pseudo = decodedToken.nickname;
             try { 
               // get user corresponding in data base 
-              const user  = await User.findOne({pseudo});
+              const user  = await user_1.User.findOne({pseudo});
                  if (user) {
                  response.status(200).json({
                                          user,
@@ -83,7 +83,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
         /*------------------  Update of a  user -- -----------*/
 
          
-                       const oldUser  = await User.findOne({"pseudo":name});
+                       const oldUser  = await user_1.User.findOne({"pseudo":name});
                        if (oldUser) {
                           // @ts-ignore
                            oldUser.updateOne({pseudo},async (error, product) => {
@@ -186,7 +186,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
         /*------------------  Update of a  user -- -----------*/
 
          
-                          const oldUser  = await User.findOne({"pseudo":name});
+                          const oldUser  = await user_1.User.findOne({"pseudo":name});
                           if (oldUser) {
                              // @ts-ignore
                               oldUser.updateOne({mail},async (error, product) => {
@@ -198,7 +198,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
                                          });
                                }
 
-                               const user =  await User.findOne({mail});
+                               const user =  await user_1.User.findOne({mail});
                               
                                const newToken = jsonwebtoken.sign({
                                  nickname: user.pseudo,
@@ -286,7 +286,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
         /*------------------  Update of a  user -- -----------*/
 
          
-                       const oldUser  = await User.findOne({"pseudo":name});
+                       const oldUser  = await user_1.User.findOne({"pseudo":name});
                        if (oldUser) {
                           // @ts-ignore
                            oldUser.updateOne({password},async (error, product) => {
@@ -298,7 +298,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
                                       });
                             }
                             
-                            const user =  await User.findOne({password});
+                            const user =  await user_1.User.findOne({password});
                          
                             const newToken = jsonwebtoken.sign({
                               nickname: user.pseudo,

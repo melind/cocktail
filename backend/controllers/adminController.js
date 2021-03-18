@@ -1,12 +1,12 @@
 exports.__esModule = true;
-var User = require ('../models/user');
+var user_1 = require ('../models/user');
 
 
  class AdminController {
 
     static async usersList(request, response) {
 
-        const users  = await User.find();
+        const users  = await user_1.User.find();
 
         if (!users) {
                         response.status(400).json({
