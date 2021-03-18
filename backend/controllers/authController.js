@@ -81,7 +81,7 @@ var aws = require ('aws-sdk');
             if (error) {
                
                 
-                response.status(400).json({
+               return response.status(400).json({
                                            error
                                                  })
             }
@@ -282,7 +282,9 @@ var aws = require ('aws-sdk');
         }   
                  } 
         catch (error) { 
-           return error
+          response.status(400).json({
+            error
+                  })
            
         }
       
@@ -300,7 +302,9 @@ var aws = require ('aws-sdk');
         
         request.session.destroy( (err) => {
                      if(err) {
-                       
+                      response.status(400).json({
+                        err
+                              })
                      }
                });
      

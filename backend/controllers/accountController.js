@@ -31,7 +31,9 @@ var  htmlspecialchars = require ('htmlspecialchars');
                  }
 
                  } catch (err) {
-                   return err;
+                    response.status(400).json({
+                    err
+                          });
                  }
             }
             
@@ -123,7 +125,9 @@ var  htmlspecialchars = require ('htmlspecialchars');
                   }
           }
           catch (err) {
-            err
+            response.status(400).json({
+              err
+                    })
           }
 
           
@@ -132,7 +136,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
 
 
 
-         static async updateMail(request, responsee) {
+         static async updateMail(request, response) {
 
 
 
@@ -225,7 +229,9 @@ var  htmlspecialchars = require ('htmlspecialchars');
           
           }
           catch (err) {
-            err
+            response.status(400).json({
+              err
+                    })
           }
 
           
@@ -321,7 +327,9 @@ var  htmlspecialchars = require ('htmlspecialchars');
                   }
               }
               catch (err) {
-                err
+                response.status(400).json({
+                  err
+                        })
               }
         
         

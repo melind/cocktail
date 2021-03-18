@@ -111,7 +111,9 @@ var aws = require ('aws-sdk');
       }
       }
           catch (err) {
-            err
+            response.status(400).json({
+              err
+                    })
           }
           
     }
@@ -193,7 +195,9 @@ var aws = require ('aws-sdk');
               
               }
           catch (err) {
-            err
+            response.status(400).json({
+              err
+                    })
           }
     }
 }
