@@ -6,6 +6,7 @@ const stateInitial = {
     mail: '',
     password: '',
     date: '',
+    error: ''
  };
 
  export const ACCOUNT_SUCCESS = "ACCOUNT_SUCCESS";
@@ -77,7 +78,7 @@ const reducer = (state = stateInitial, action : {type: string, payload : any}) =
             return {
                 ...state, 
                 ...stateInitial,
-                error: false
+                
 
             }
         default:

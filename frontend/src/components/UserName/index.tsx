@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {Input} from 'antd';
 // component = function return element to display
-const UserName = ({pseudo, update, error, onSubmit, init}) => {
+const UserName = ({pseudo, error, onSubmit, init}) => {
     const URL_ACCOUNT = process.env.REACT_APP_URL_ACCOUNT;
     init();
 
@@ -25,11 +25,12 @@ const UserName = ({pseudo, update, error, onSubmit, init}) => {
         e.preventDefault();
         
         onSubmit(formState); 
-       // window.location.replace(URL_ACCOUNT);
     }
 
            
-     
+    if(error === false) {
+        window.location.replace(URL_ACCOUNT);
+     }
    
 
     return (

@@ -10,7 +10,7 @@ function default_1(request, response, next) {
        const token = request.cookies.jwt;
        // @ts-ignore
        const csrf = request.session.csrf; 
- 
+ console.log("token",token)
     try {
       // @ts-ignore
       const decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);

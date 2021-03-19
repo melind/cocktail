@@ -8,7 +8,7 @@ const Password = ({password, error, onSubmit, init}) => {
     const URL_ACCOUNT = process.env.REACT_APP_URL_ACCOUNT;
     init();
 
-    console.log("states come from update:", password, error);
+    console.log("states come from update:", error);
 
     const [formState, setFormState] = useState({password});
     const handleChange = (e) => {
@@ -28,13 +28,15 @@ const Password = ({password, error, onSubmit, init}) => {
         
         if (!result[0]) { 
           onSubmit(formState);
-           //window.location.replace(URL_ACCOUNT);
+           
         }
       
        
    
     }
-     
+    if(error === false) {
+        window.location.replace(URL_ACCOUNT);
+     }
    
 
     return (
