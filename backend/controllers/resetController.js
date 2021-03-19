@@ -145,10 +145,12 @@ var nodemailer = require ('nodemailer');
     }
 
     static async newPassword(request, response) {
-      
+
       let passwordResetToken = request.params.passwordResetToken;
       if (!passwordResetToken) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
-        
+        const usertest = await user_1.User.findOne({ passwordResetToken: passwordResetToken });
+        console.log("user", usertest);
+        if (!usertest) return response.status(400).json({ type: 'not-verified', msg: 'hummmm' });
         try{ 
 
               let password = request.body.password;
