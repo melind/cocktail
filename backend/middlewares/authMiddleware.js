@@ -10,14 +10,14 @@ function default_1 (request, response, next) {
     var token = request.cookies.jwt;
      // @ts-ignore
     var csrf= request.session.csrf;
- 
+ console.log("mail,", process.env.MAIL)
     try {
        // @ts-ignore
       var decodedToken= jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
          // @ts-ignore
-        if ((decodedToken.mail === process.env.MAIL ) && csrf) {
+        if (decodedToken && csrf) {
            // @ts-ignore
-        
+           console.log("decode", decodedToken, "decodmail",decodedToken.mail)
 
         next();
       } else {
