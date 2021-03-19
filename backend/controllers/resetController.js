@@ -96,7 +96,7 @@ var nodemailer = require ('nodemailer');
                       subject: 'Réinitialisation de votre mot de passe', 
                       html: '<html><body>You recieve this e-mail beacause you (or someone else) ask to reset the password.</br></br>' +
                             'Please, click to the link, or past it in your browser to finish the process : ' +
-                            '<a href="https:\/\/'+ request.headers.Access-Control-Allow-Origin +'\/new-password\/' + passwordResetTokenMail + ' ">Click here</a>.</br></br>' +
+                            '<a href="https:\/\/'+ request.headers['Access-Control-Allow-Origin'] +'\/new-password\/' + passwordResetTokenMail + ' ">Click here</a>.</br></br>' +
                             'If you have not ask for this reset, please ignore this e-mail and your password will be unchanged.</br></br>Cocktail</body></html>'
                        };
                     // @ts-ignore
