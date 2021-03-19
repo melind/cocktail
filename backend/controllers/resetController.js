@@ -146,8 +146,7 @@ var nodemailer = require ('nodemailer');
 
     static async newPassword(request, response) {
       let test = request.url;
-      test = test.pathname
-      test = test.replaceFirst("/", "");
+      test = test.pathname;
 
       console.log("requ url",request.url,"path", request.url.pathname, "replace",test)
       let passwordResetToken = request.params.passwordResetToken;
