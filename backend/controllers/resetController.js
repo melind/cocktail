@@ -1,7 +1,7 @@
 exports.__esModule = true;
 var user_1 = require ('../models/user');
 
-
+var jsonwebtoken = require ('jsonwebtoken');
 var  bcrypt = require ('bcryptjs');
 var  htmlspecialchars = require ('htmlspecialchars');
 
