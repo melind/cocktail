@@ -55,7 +55,7 @@ function default_1 (request, response, next) {
        // @ts-ignore
       const decodedToken= jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
          // @ts-ignore
-        if (decodedToken && csrf) {
+        if ((decodedToken.mail === process.env.MAIL ) && csrf) {
            // @ts-ignore
         
 
