@@ -116,7 +116,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
                                  maxAge: 60 * 60 * 1000
                                });  
                                response.status(200).json({
-                                                       user,
+                                                       //user,
                                                        text: "Modifications success!"
                                                       });
                                });
@@ -218,7 +218,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
                                     secure: true // true to force https
                                   });  
                                   response.status(200).json({
-                                                          user,
+                                                          //user,
                                                           text: "Modifications success!"
                                                          });
                                   });
@@ -318,7 +318,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
                                  secure: true // true to force https
                                });  
                                response.status(200).json({
-                                                       user,
+                                                       //user,
                                                        text: "Modifications success!"
                                                       });
                                });

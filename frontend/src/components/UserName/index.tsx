@@ -25,7 +25,7 @@ const UserName = ({pseudo, update, error, onSubmit, init}) => {
         e.preventDefault();
         
         onSubmit(formState); 
-        window.location.replace(URL_ACCOUNT);
+       // window.location.replace(URL_ACCOUNT);
     }
 
            

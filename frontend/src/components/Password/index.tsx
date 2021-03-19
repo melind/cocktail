@@ -28,7 +28,7 @@ const Password = ({password, error, onSubmit, init}) => {
         
         if (!result[0]) { 
           onSubmit(formState);
-           window.location.replace(URL_ACCOUNT);
+           //window.location.replace(URL_ACCOUNT);
         }
       
        

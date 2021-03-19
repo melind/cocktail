@@ -87,7 +87,13 @@ var nodemailer = require ('nodemailer');
   
             else {
                   // Create a verification token for user
-                  let token = new token_1.Token({ userId: newUser._id, token: bcrypt.hashSync(process.env.TOKEN_WORD, 10)});
+                  let tokenGen = bcrypt.hashSync(process.env.TOKEN_WORD, 10);
+                  if (tokenGen.includes("/"||".")) {
+                    tokenGen = bcrypt.hashSync(process.env.TOKEN_WORD, 10);
+                 }
+
+                 else { 
+                  let token = new token_1.Token({ userId: newUser._id, token: tokenGen});
 
                   // Save the verification token
                   token.save(function (err) {
@@ -120,7 +126,7 @@ var nodemailer = require ('nodemailer');
                     });
                 });
              }
-            
+            }
         });
       }
      }

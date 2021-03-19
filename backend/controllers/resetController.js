@@ -60,8 +60,14 @@ var nodemailer = require ('nodemailer');
        
               if (user) { 
                   // Create a reset token for user
-                  const regex = /\//g;
-                  let passwordResetToken = bcrypt.hashSync(process.env.TOKEN_WORD, 10);
+                  //const regex = /\//g;
+                  let tokenGen = bcrypt.hashSync(process.env.TOKEN_WORD, 10);
+                  if (tokenGen.includes("/"||".")) {
+                    tokenGen = bcrypt.hashSync(process.env.TOKEN_WORD, 10);
+                 }
+
+                 else { 
+                  let passwordResetToken = tokenGen;
 
                   // Save the verification token
                   // @ts-ignore
@@ -83,14 +89,14 @@ var nodemailer = require ('nodemailer');
                           }
                     });
                     
-                    let passwordResetTokenMail = passwordResetToken.replace(regex, "%2F");
+                    let passwordResetTokenMail = tokenGen;//passwordResetToken.replace(regex, "%2F")
                     let mailOptions = { 
                       from: 'no-reply-cocktail@pechemelba.fr', 
                       to: user.mail, 
                       subject: 'Réinitialisation de votre mot de passe', 
                       html: '<html><body>You recieve this e-mail beacause you (or someone else) ask to reset the password.</br></br>' +
                             'Please, click to the link, or past it in your browser to finish the process : ' +
-                            '<a href="http://'+ request.headers.host + '\/new-password\/' + passwordResetTokenMail + ' ">Click here</a>.</br></br>' +
+                            '<a href="https://www.cocktail.pechemelba.fr\/new-password\/' + passwordResetTokenMail + ' ">Click here</a>.</br></br>' +
                             'If you have not ask for this reset, please ignore this e-mail and your password will be unchanged.</br></br>Cocktail</body></html>'
                        };
                     // @ts-ignore
@@ -106,6 +112,7 @@ var nodemailer = require ('nodemailer');
             
         
               }
+            }
       }
       }
           catch (err) {
