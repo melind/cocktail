@@ -8,7 +8,6 @@ const NewPassword = ({password, error, onSubmit, init}) => {
  
     init();
 
-    console.log("states come from update:", password, error);
 
     const [formState, setFormState] = useState({password});
     const handleChange = (e) => {

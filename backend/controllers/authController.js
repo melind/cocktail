@@ -186,7 +186,7 @@ var nodemailer = require ('nodemailer');
                 from: 'no-reply-cocktail@pechemelba.fr', 
                 to: user.mail, 
                 subject: 'Valid account', 
-                html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="http:\/\/' + request.headers.host + '\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>' 
+                html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="https:\/\/' + request.headers.host + '\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>' 
               }; 
               // @ts-ignore
               transporter.sendMail(mailOptions, function (err) {

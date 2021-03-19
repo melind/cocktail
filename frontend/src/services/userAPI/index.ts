@@ -58,6 +58,7 @@ export default {
 
     newPassword: (formState) => { 
         // @ts-ignore
+        axios.defaults.withCredentials = true;
         return axios.post( API_URL + '/new-password/:passwordResetToken', qs.stringify(formState))
         },
         
@@ -71,6 +72,7 @@ export default {
     },
     resetPassword: (formState) => {
         // @ts-ignore 
+        axios.defaults.withCredentials = true;
         return axios.post( API_URL + '/reset-password', qs.stringify(formState))
     },
 
