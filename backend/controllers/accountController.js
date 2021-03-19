@@ -94,11 +94,11 @@ var  htmlspecialchars = require ('htmlspecialchars');
                                       });
                             }
                             
-                            const user =  await User.findOne({pseudo});
+                            const user =  await user_1.User.findOne({pseudo});
                            
                             const newToken = jsonwebtoken.sign({
                               nickname: user.pseudo,
-                              admin: user.admin,
+                              mail: user.mail,
                               exp: (new Date().getTime() + 60 * 60 * 1000)/1000,//exp dans 1h
                               
                              },
@@ -111,8 +111,8 @@ var  htmlspecialchars = require ('htmlspecialchars');
                              ); 
                              
                               response.cookie('jwt', newToken, { 
-                                 //httpOnly: true, //cookie not available through client js code (xss)!!! pas de cookie.load
-                                 //secure: true // true to force https
+                                 httpOnly: true, //cookie not available through client js code (xss)!!! pas de cookie.load
+                                 secure: true, // true to force https
                                  maxAge: 60 * 60 * 1000
                                });  
                                response.status(200).json({
@@ -202,7 +202,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
                               
                                const newToken = jsonwebtoken.sign({
                                  nickname: user.pseudo,
-                                 admin: user.admin,
+                                 mail: user.mail,
                                  exp: Math.floor(Date.now() / 1000) + (60 * 60),//exp dans 1h
 
                                 },
@@ -302,7 +302,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
                          
                             const newToken = jsonwebtoken.sign({
                               nickname: user.pseudo,
-                              admin: user.admin,
+                              mail: user.mail,
                               exp: Math.floor(Date.now() / 1000) + (60 * 60),//exp dans 1h
                               
                              },
