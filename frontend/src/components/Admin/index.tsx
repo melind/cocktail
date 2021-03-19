@@ -17,7 +17,7 @@ const Admin = () => {
         })
         .catch(err => {
 
-            
+            return err
         });
 
         setUsers(list);
@@ -29,9 +29,11 @@ const Admin = () => {
           
             userAPI.deleteOtherUser(user);
             message.success('Suppression réussie !');
-            setTimeout(function () {
+           /* setTimeout(function () {
                 document.location.reload();
          }, 1000);
+         
+         use tulip or record*/
 }
         useEffect(() => {
             usersList();

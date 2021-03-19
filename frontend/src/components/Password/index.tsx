@@ -8,7 +8,6 @@ const Password = ({password, error, onSubmit, init}) => {
     const URL_ACCOUNT = process.env.REACT_APP_URL_ACCOUNT;
     init();
 
-    console.log("states come from update:", error);
 
     const [formState, setFormState] = useState({password});
     const handleChange = (e) => {
