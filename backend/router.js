@@ -21,7 +21,7 @@ const bodyParser = bodyparser.urlencoded({extended: true});
 
 router.get('/', homeController["default"].pseudoUser);
 router.get('/home', cocktailsController["default"].cocktailsRandom);
-router.get('/admin-938-kml',  adminController["default"].usersList);
+router.get('/admin-938-kml', adminMiddleware_1["default"], adminController["default"].usersList);
 
 router.post('/login', bodyParser, authController["default"].postLogin);
 router.get('/logout', authController["default"].logout);

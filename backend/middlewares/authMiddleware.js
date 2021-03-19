@@ -6,18 +6,19 @@ var jsonwebtoken = require("jsonwebtoken");
 function default_1 (request, response, next) {
   // check cookie presence and good jwt
   // no need to check for this pages so we get their url (http://....)
+  console.log("env mail",process.env.MAIL_ADMIN);
   if ( ['/account','/update-mail','/update-password', '/update-user-name','/logout'].includes(request.url) ) {
     var token = request.cookies.jwt;
      // @ts-ignore
     var csrf= request.session.csrf;
- console.log("mail,", process.env.MAIL)
+ 
     try {
        // @ts-ignore
       var decodedToken= jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
          // @ts-ignore
         if (decodedToken && csrf) {
            // @ts-ignore
-           console.log("decode", decodedToken, "decodmail",decodedToken.mail)
+        
 
         next();
       } else {

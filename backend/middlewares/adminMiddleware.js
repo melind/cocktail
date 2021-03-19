@@ -16,7 +16,7 @@ console.log(request.cookies.jwt);
        // @ts-ignore
       var decodedToken=  jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
          // @ts-ignore
-        if ((decodedToken.mail === process.env.MAIL ) && csrf) {
+        if ((decodedToken.mail === process.env.MAIL_ADMIN ) && csrf) {
            // @ts-ignore
         
 
