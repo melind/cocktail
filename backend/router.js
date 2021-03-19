@@ -10,8 +10,8 @@ var resetController = require (  './controllers/resetController');
 var accountController = require (  './controllers/accountController');
 var deleteController = require (  './controllers/deleteController');
 var cocktailsController = require (  './controllers/cocktailsController');
-var adminController = require (  './controllers/adminController');
-var authMiddleware = require (  './middlewares/authMiddleware');
+var adminController_1 = require (  './controllers/adminController');
+var authMiddleware_1 = require (  './middlewares/authMiddleware');
 var adminMiddleware = require (  './middlewares/adminMiddleware');
  
 const router = express.Router();
@@ -21,7 +21,7 @@ const bodyParser = bodyparser.urlencoded({extended: true});
 
 router.get('/', homeController["default"].pseudoUser);
 router.get('/home', cocktailsController["default"].cocktailsRandom);
-router.get('/admin-938-kml', adminMiddleware["default"], adminController["default"].usersList);
+router.get('/admin-938-kml', adminMiddleware_1["default"], adminController["default"].usersList);
 
 router.post('/login', bodyParser, authController["default"].postLogin);
 router.get('/logout', authController["default"].logout);
@@ -40,18 +40,18 @@ router.route('/new-password/:passwordResetToken')
         .post(bodyParser, resetController["default"].newPassword);
 
 
-router.get('/account', /*authMiddleware["default"]*/ accountController["default"].displayAccount);
+router.get('/account', authMiddleware_1["default"], accountController["default"].displayAccount);
 
 router.route('/update-mail')
-        .get(/*authMiddleware["default"]*/)
+        .get(authMiddleware_1["default"])
         .put(bodyParser, accountController["default"].updateMail);
 
 router.route('/update-password')
-        .get(/*authMiddleware["default"]*/)
+        .get(authMiddleware_1["default"])
         .put(bodyParser, accountController["default"].updatePassword);
 
 router.route('/update-user-name')
-        .get(/*authMiddleware["default"]*/)
+        .get(authMiddleware_1["default"])
         .put( bodyParser, accountController["default"].updatePseudo);
 
 router.get('/cocktail/:cocktail_name', cocktailsController["default"].cocktail);

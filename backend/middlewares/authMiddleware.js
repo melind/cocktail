@@ -1,4 +1,4 @@
-
+"use strict";
 exports.__esModule = true;
 
 var jsonwebtoken = require("jsonwebtoken");
