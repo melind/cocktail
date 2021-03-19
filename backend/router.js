@@ -10,9 +10,9 @@ var resetController = require (  './controllers/resetController');
 var accountController = require (  './controllers/accountController');
 var deleteController = require (  './controllers/deleteController');
 var cocktailsController = require (  './controllers/cocktailsController');
-var adminController_1 = require (  './controllers/adminController');
+var adminController = require (  './controllers/adminController');
 var authMiddleware_1 = require (  './middlewares/authMiddleware');
-var adminMiddleware = require (  './middlewares/adminMiddleware');
+var adminMiddleware_1 = require (  './middlewares/adminMiddleware');
  
 const router = express.Router();
 
