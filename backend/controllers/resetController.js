@@ -147,7 +147,7 @@ var nodemailer = require ('nodemailer');
                                                      } doesn't work but by default is HS256*/
                                                      
                                                     );  
-                  response.cookie('token', token, { 
+                  response.cookie('jwt', token, { 
                                                         httpOnly: true, //cookie not available through client js code (xss)!!! pas de cookie.load
                                                         secure: true, // true to force https
                                                         
@@ -161,7 +161,7 @@ var nodemailer = require ('nodemailer');
     }
 
     static async newPassword(request, response) {
-      let token = request.cookies.token;
+      let token = request.cookies.jwt;
       let decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
      // let passwordResetToken = request.params.passwordResetToken;
       console.log('token',token,'passwordResetToken',decodedToken, '.pasw',decodedToken.passwordResetToken)
