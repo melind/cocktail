@@ -40,18 +40,18 @@ router.route('/new-password/:passwordResetToken')
         .post(bodyParser, resetController["default"].newPassword);
 
 
-router.get('/account', authMiddleware["default"], accountController["default"].displayAccount);
+router.get('/account', /*authMiddleware["default"]*/ accountController["default"].displayAccount);
 
 router.route('/update-mail')
-        .get(authMiddleware["default"])
+        .get(/*authMiddleware["default"]*/)
         .put(bodyParser, accountController["default"].updateMail);
 
 router.route('/update-password')
-        .get(authMiddleware["default"])
+        .get(/*authMiddleware["default"]*/)
         .put(bodyParser, accountController["default"].updatePassword);
 
 router.route('/update-user-name')
-        .get(authMiddleware["default"])
+        .get(/*authMiddleware["default"]*/)
         .put( bodyParser, accountController["default"].updatePseudo);
 
 router.get('/cocktail/:cocktail_name', cocktailsController["default"].cocktail);
