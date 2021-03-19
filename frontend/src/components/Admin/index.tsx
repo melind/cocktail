@@ -46,7 +46,7 @@ const Admin = () => {
         <div className="admin">
             <h1>Hello admin !</h1> <br/><br/> 
             <p>Liste des abonnés</p>
-             <ul>{users.map((result) => 
+             <ul>{users && users.map((result) => 
                  <li key={result._id}>{result.pseudo} delete account 
                   <Popconfirm
                         title="Delete account ?"
