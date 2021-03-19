@@ -25,9 +25,11 @@ var  htmlspecialchars = require ('htmlspecialchars');
               // get user corresponding in data base 
               const user  = await user_1.User.findOne({pseudo});
                  if (user) {
-                 response.status(200).json({
-                                         user,
-                                        });
+                 response.status(200).json(
+                                         user.pseudo,
+                                         user.date,
+                                         user.mail
+                                        );
                  }
 
                  } catch (err) {

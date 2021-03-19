@@ -7,7 +7,7 @@ import './index.css';
 
  
 
-const Account = ({display, pseudo, mail, password, date, onClick, init}) => {
+const Account = ({display, pseudo, mail, date, onClick, init}) => {
 
 display();
 const URL = process.env.REACT_APP_URL_HOME;
