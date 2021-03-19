@@ -17,7 +17,7 @@ var user_1 = require ('../models/user');
         else {
         response.status(200).json({
                     text: "List of users",
-                    users
+                    users: users.pseudo
                     });
         }
     }
