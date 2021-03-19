@@ -116,7 +116,7 @@ var  htmlspecialchars = require ('htmlspecialchars');
                                  maxAge: 60 * 60 * 1000
                                });  
                                response.status(200).json({
-                                                       //user,
+                                                       user,
                                                        text: "Modifications success!"
                                                       });
                                });
@@ -214,11 +214,11 @@ var  htmlspecialchars = require ('htmlspecialchars');
                                 ); 
                               
                                  response.cookie('jwt', newToken, { 
-                                    //httpOnly: true, //cookie not available through client js code (xss)!!! pas de cookie.load
-                                    //secure: true // true to force https
+                                    httpOnly: true, //cookie not available through client js code (xss)!!! pas de cookie.load
+                                    secure: true // true to force https
                                   });  
                                   response.status(200).json({
-                                                          //user,
+                                                          user,
                                                           text: "Modifications success!"
                                                          });
                                   });
@@ -314,11 +314,11 @@ var  htmlspecialchars = require ('htmlspecialchars');
                              ); 
                           
                               response.cookie('jwt', newToken, { 
-                                 //httpOnly: true, //cookie not available through client js code (xss)!!! pas de cookie.load
-                                 //secure: true // true to force https
+                                 httpOnly: true, //cookie not available through client js code (xss)!!! pas de cookie.load
+                                 secure: true // true to force https
                                });  
                                response.status(200).json({
-                                                       //user,
+                                                       user,
                                                        text: "Modifications success!"
                                                       });
                                });
