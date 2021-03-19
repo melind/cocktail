@@ -126,7 +126,7 @@ var nodemailer = require ('nodemailer');
 
     static async editFormPassword(request, response) {
               
-
+            
               let passwordResetToken = request.params.passwordResetToken;
               if (!passwordResetToken) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
                 // Find a matching token  
@@ -145,6 +145,9 @@ var nodemailer = require ('nodemailer');
     }
 
     static async newPassword(request, response) {
+      
+      let passwordResetToken = request.params.passwordResetToken;
+      if (!passwordResetToken) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
         
         try{ 
 
@@ -152,15 +155,13 @@ var nodemailer = require ('nodemailer');
               password = password.replace(/ /g,""); password = htmlspecialchars(password);
               password = bcrypt.hashSync(password, 10);
     
-              let passwordResetToken = request.params.passwordResetToken;
-              if (!passwordResetToken) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
-                
+              
                 // Find a matching token
               const user = await user_1.User.findOne({ passwordResetToken: passwordResetToken }, async (err, product) => {
                     if (err) { 
                       return response.status(500).json({ err }); }
                     });             
-                    if (!user) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
+                    if (!user) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a user with a valid token. Your token my have expired.' });
 
                 // If we found a token, find a matching user
                 // @ts-ignore
