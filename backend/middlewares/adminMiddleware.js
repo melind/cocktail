@@ -46,7 +46,7 @@ function default_1 (request, response, next) {
   // check cookie presence and good jwt
 
   // no need to check for this pages so we get their url (http://....)
-  if ( ['/admin-938-kml'].includes(request.url) ) {
+  if ( ['/account','/update-mail','/update-password', '/update-user-name','/logout','/admin-938-kml'].includes(request.url) ) {
     const token = request.cookies.jwt;
      // @ts-ignore
     const csrf= request.session.csrf;
@@ -55,7 +55,7 @@ function default_1 (request, response, next) {
        // @ts-ignore
       const decodedToken= jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
          // @ts-ignore
-        if ((decodedToken.mail === process.env.MAIL ) && csrf) {
+        if (decodedToken && csrf) {
            // @ts-ignore
         
 
