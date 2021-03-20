@@ -35,7 +35,12 @@ const Signup = ({pseudo, mail, password, onSubmit, error, init}) => {
           
           if (result[0] === undefined && result[2] === undefined) { 
           onSubmit(formState);
+          if(error === false){ 
           window.location.replace(URL);
+          }
+          else {
+            alert('signup failed')
+          }
           }
          result[0] ? setValidateMail(false): setValidateMail(true);
           

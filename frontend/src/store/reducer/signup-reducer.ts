@@ -5,6 +5,7 @@ const stateInitial = {
     pseudo: '',
     mail: '',
     password: '',
+    error: ''
  };
 
  export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
@@ -23,7 +24,7 @@ const reducer = (state = stateInitial, action : {type: string, payload : any}) =
         case SIGNUP_ERROR:
             return {
                 ...state,
-                error: "Inscription non réussi",
+                error: true,
 
             }
         case INIT:
