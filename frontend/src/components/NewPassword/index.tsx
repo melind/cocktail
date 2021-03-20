@@ -29,9 +29,10 @@ const NewPassword = (props,{password, error, onSubmit, init}) => {
       
     }
 
-        if(props.error === true) {
+        if(props.error === false) {
           window.location.replace(URL);
         }
+        
 
       useEffect(() => {
         props.init();

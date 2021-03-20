@@ -54,6 +54,9 @@ export const newPassword = (token, formState) => (dispatch, getState) => {
         .catch(err => {
             // inform my reducer there is an error
             console.log(err);
+            if (err.response.data) {
+                alert(err.response.data.msg);
+                }
             dispatch(resetPasswordError());
         });
 };

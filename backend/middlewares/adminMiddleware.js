@@ -5,7 +5,7 @@ var jsonwebtoken = require("jsonwebtoken");
 
 function default_1 (request, response, next) {
   // check cookie presence and good jwt
-console.log(request.cookies.jwt);
+
   // no need to check for this pages so we get their url (http://....)
   if ( ['/admin-938-kml'].includes(request.url) ) {
     var token = request.cookies.jwt;

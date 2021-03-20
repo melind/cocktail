@@ -30,7 +30,7 @@ router.delete('/delete-account', deleteController["default"].deleteAccount);
 router.delete('/delete-other-account/:user', deleteController["default"].deleteOtherAccount);
 
 router.post('/signup',bodyParser, authController["default"].postSignup);
-router.get('/confirmation/:token', authController["default"].userConfirmation);
+router.get('/confirm/:token', authController["default"].userConfirmation);
 router.post('/resend', bodyParser, authController["default"].resendToken);
 
 router.post('/reset-password', bodyParser, resetController["default"].resetPassword);

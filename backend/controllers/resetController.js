@@ -195,7 +195,7 @@ var nodemailer = require ('nodemailer');
                         if (err) { 
                           return response.status(500).json({ err}); 
                        }
-                       response.clearCookie('token');
+                       
                        response.status(200).json('Password change ! ' );
                     });
 

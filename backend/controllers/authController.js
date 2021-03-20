@@ -21,6 +21,7 @@ var nodemailer = require ('nodemailer');
 
     static postSignup(request, response) {
 
+        const URL_CORS = process.env.URL_CORS
         /*-----------------   data of the form   -----------------*/
         let {pseudo, mail, password}  = request.body;
 
@@ -160,7 +161,8 @@ var nodemailer = require ('nodemailer');
 
 
     static async resendToken(request, response) {
-            
+      
+      const URL_CORS = process.env.URL_CORS;
       user_1.User.findOne({ mail: htmlspecialchars(request.body.mail) }, function (err, user) {
           if (!user) return response.status(400).json({ msg: 'We were unable to find a user with that email.' });
           if (user.isVerified) return response.status(400).json({ msg: 'This account has already been verified. Please log in.' });
@@ -280,8 +282,7 @@ var nodemailer = require ('nodemailer');
                    maxAge: 60 * 60 * 1000 
                  });  
                  response.status(200).json({
-                    text: "Succès for post login",
-                    csrf
+                    text: "Succès for post login"
                     });
                     
                 

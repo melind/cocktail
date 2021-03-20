@@ -55,7 +55,9 @@ export const confirm = (token) => (dispatch, getState) => {
         .catch(err => {
             // inform my reducer there is an error
             console.log( err || err.reponse.data.type)
-          
+            if (err.response.data) {
+                alert(err.response.data.msg);
+                }
             dispatch(confirmError());
         });
 };
