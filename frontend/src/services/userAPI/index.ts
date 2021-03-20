@@ -13,11 +13,16 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export default {
 
+    confirm: (token) => { 
+        // @ts-ignore
+        axios.defaults.withCredentials = true;
+        return axios.get( API_URL + `/confirm/${token}`,{headers: headers})
+        }, 
     deleteUser: () => { 
         axios.defaults.withCredentials = true;
         return axios.delete( API_URL + '/delete-account', {headers: headers})
     },
-     deleteOtherUser: (user) => { 
+    deleteOtherUser: (user) => { 
         axios.defaults.withCredentials = true;
         return axios.delete( API_URL + `/delete-other-account/${user}`, {headers: headers})
     },
@@ -56,12 +61,11 @@ export default {
         return axios.get( API_URL + '/logout')
     },
 
-    newPassword: (formState) => { 
+    newPassword: (token,formState) => { 
         // @ts-ignore
         axios.defaults.withCredentials = true;
-        return axios.post( API_URL + '/new-password/:passwordResetToken', qs.stringify(formState),{headers: headers})
-        },
-        
+        return axios.post( API_URL + `/new-password/${token}`, qs.stringify(formState),{headers: headers})
+        }, 
     pseudoUser: () => { 
         axios.defaults.withCredentials = true;
         return axios.get( API_URL + '/')

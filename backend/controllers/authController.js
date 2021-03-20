@@ -112,10 +112,11 @@ var nodemailer = require ('nodemailer');
                     }
               });
                     let mailOptions = { 
+                      headers: {'Access-Control-Allow-Origin':URL_CORS, 'Access-Control-Allow-Headers':'Content-Type'},
                       from: 'no-reply-cocktail@pechemelba.fr', 
                       to: newUser.mail, 
                       subject: 'Valid account', 
-                      html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="http:\/\/' + request.headers.host + '\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>'
+                      html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="http:\/\/cocktail.pechemelba.fr\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>'
                     };
                     // @ts-ignore
                     transporter.sendMail(mailOptions, function (err) {
@@ -183,10 +184,11 @@ var nodemailer = require ('nodemailer');
                     }
               });
               let mailOptions = { 
+                headers: {'Access-Control-Allow-Origin':URL_CORS, 'Access-Control-Allow-Headers':'Content-Type'},
                 from: 'no-reply-cocktail@pechemelba.fr', 
                 to: user.mail, 
-                subject: 'Valid account', 
-                html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="https:\/\/' + request.headers.host + '\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>' 
+                subject: 'Validation of your account', 
+                html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="https:\/\/cocktail.pechemelba.fr\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>' 
               }; 
               // @ts-ignore
               transporter.sendMail(mailOptions, function (err) {

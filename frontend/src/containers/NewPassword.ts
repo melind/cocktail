@@ -7,13 +7,14 @@ import {  newPassword, init } from '../store/reducer/newPassword-reducer';
 const mapStateToProps = 
  
 (state) => ({
-   password: state.newPassword.password
+   password: state.newPassword.password,
+   error: state.newPassword.error
 });
 
 const mapDispatchToProps = (dispatch) => ({
   
-  onSubmit: (formState) => {
-        dispatch(newPassword(formState));// transfer input_name value ?
+  onSubmit: (token,formState) => {
+        dispatch(newPassword(token,formState));// transfer input_name value ?
     },
   init: () => {
       dispatch(init());

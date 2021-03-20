@@ -10,6 +10,7 @@ import CocktailsAlcoholic from '../CocktailsAlcoholic';
 import CocktailsByIngredient from '../CocktailsByIngredient';
 import CocktailsNonAlcoholic from '../CocktailsNonAlcoholic';
 import CocktailInfo from '../CocktailInfo';
+import Confirm from '../../containers/Confirm';
 import Footer from '../Footer';
 import ForgetPassword from '../../containers/ForgetPassword';
 import Home from '../Home';
@@ -98,6 +99,7 @@ const App = () => {
         <PrivateRoute path="/update-mail" exact component={Mail} />
         <PrivateRoute path="/update-password" exact component={Password} />
         <PublicRoute restricted={true} path="/signup" exact  component={Signup} />
+        <PublicRoute restricted={true} path="/confirm/:token" exact component={Confirm}/>
         <PublicRoute restricted={true} path="/resend-email" exact  component={ResendToken} />
         <PrivateRoute path="/update-pseudo" exact component={UserName} />
         <PublicRoute restricted={false} path="/legal-mentions" exact component={LegalMentions}/>

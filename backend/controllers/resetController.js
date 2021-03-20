@@ -136,22 +136,7 @@ var nodemailer = require ('nodemailer');
                if (!user) return response.status(400).json("user not found"+
                                                        passwordResetToken); 
                
-               const token = jsonwebtoken.sign({
-                                                      passwordResetToken,
-                                                        exp: (new Date().getTime() + 60 * 60 * 1000)/1000 //exp dans 1h
-                                                        
-                                                    },
-                                                    process.env.JWT_PRIVATE_KEY,
-                                                    /*{
-                                                       "algorithm": process.env.ALGORYTHME,
-                                                     } doesn't work but by default is HS256*/
-                                                     
-                                                    );  
-                  response.cookie('jwt', token, { 
-                                                        httpOnly: true, //cookie not available through client js code (xss)!!! pas de cookie.load
-                                                        secure: true, // true to force https
-                                                        
-                                                      });  
+                 
                 response.status(200).json({
                                                        //user,
                                                        text: "Access autorised for Modificate password!"
@@ -161,16 +146,13 @@ var nodemailer = require ('nodemailer');
     }
 
     static async newPassword(request, response) {
-      let token = request.cookies.jwt;
-      let decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
-     // let passwordResetToken = request.params.passwordResetToken;
-      console.log('token',token,'passwordResetToken',decodedToken, '.pasw',decodedToken.passwordResetToken)
-      if (!passwordResetToken) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
-        const usertest = await user_1.User.findOne({ passwordResetToken });
     
-        if (!usertest) return response.status(400).json({ type: 'not-verified', msg: 'hummmm' });
+      
         try{ 
-
+          let passwordResetToken = request.params.passwordResetToken;
+          console.log("pswtoken", passwordResetToken);
+          if (!passwordResetToken) return response.status(400).json({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
+     
               let password = request.body.password;
               password = password.replace(/ /g,""); password = htmlspecialchars(password);
               password = bcrypt.hashSync(password, 10);
