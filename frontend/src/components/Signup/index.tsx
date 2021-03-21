@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 //import './index.css';
 import { Link, useHistory } from 'react-router-dom';
 import  displayError  from '../../lib/validation';
 import {Button, Input} from 'antd';
 import './index.css';
 // component = function return element to display
-const Signup = ({pseudo, mail, password, onSubmit, error, init}) => {
-    const URL = process.env.REACT_APP_URL_LOGIN;
-    setTimeout(function () {
-        init();
+const Signup = ({pseudo, mail, password, onSubmit, succeed, init}) => {
     
-      }, 1000);
-
+    const URL = process.env.REACT_APP_URL_LOGIN;
 
     const [formState, setFormState] = useState({pseudo, mail, password});
     const [validateMail, setValidateMail] = useState(true); 
@@ -35,12 +31,12 @@ const Signup = ({pseudo, mail, password, onSubmit, error, init}) => {
           
           if (result[0] === undefined && result[2] === undefined) { 
           onSubmit(formState);
-          if(error === false){ 
-          window.location.replace(URL);
-          }
-          else {
-            alert('signup failed')
-          }
+          if(succeed === true){ 
+            window.location.replace(URL);
+            }
+            else if(succeed === false) {
+              alert('signup failed')
+            }
           }
          result[0] ? setValidateMail(false): setValidateMail(true);
           
@@ -67,7 +63,11 @@ const Signup = ({pseudo, mail, password, onSubmit, error, init}) => {
         password_input.setAttribute('type', type);
         eye.classList.toggle("fa-eye-slash")
       }
-    
+
+     
+      useEffect(() => {
+        init();
+        }, []);
    
 
     return (

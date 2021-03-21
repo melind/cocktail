@@ -12,7 +12,7 @@ const mapStateToProps =
    mail: state.signup.mail,
    password: state.signup.password,
    subscriber: state.signup.subscriber,
-   error: state.signup.error
+   succeed: state.signup.succeed
 });
 
 const mapDispatchToProps = (dispatch) => ({
