@@ -22,6 +22,7 @@ const credentials = {
 var app = express();
 const SERVER_PORT  = process.env.SERVER_PORT || 5050;
 const URL_CORS = process.env.URL_CORS || "https://cocktail.pechemelba.fr/";
+const URL_CORS_TWO = process.env.URL_CORS_TWO;
 const MONGODB_URI = process.env.MONGODB_URI || '';
 
 // middleware cookie-parser pour stocker info
@@ -33,7 +34,7 @@ app.use(expressSession({
 }));
 
 app.use(cors({
-    "origin": [URL_CORS], 
+    "origin": [URL_CORS, URL_CORS_TWO], 
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "allowedHeaders": ["Origin", " X-Requested-With", "Content-Type", "Accept","Content-Security-Policy","X-Content-Type-Options"],
     "credentials": true,
