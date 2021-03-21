@@ -2,13 +2,14 @@ import userAPI from '../../services/userAPI';
 
 const stateInitial = { 
     loggedout: false,
-    pseudo: ''
+    pseudo: '',
+    error: ''
  };
 
  export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
  export const LOGOUT_ERROR = "LOGOUT_ERROR";
- export const INIT = "INIT";
-export const PSEUDO_SUCCESS = "PSEUDO_SUCCESS";
+
+ export const PSEUDO_SUCCESS = "PSEUDO_SUCCESS";
  export const PSEUDO_ERROR = "PSEUDO_ERROR";
 
 const reducer = (state = stateInitial, action: {type: string, payload : any}) => {
@@ -16,7 +17,6 @@ const reducer = (state = stateInitial, action: {type: string, payload : any}) =>
         case LOGOUT_SUCCESS: 
             return {
                 ...state, 
-                pseudo: '',
                 loggedout: true,
                 error: false
 
@@ -38,13 +38,8 @@ const reducer = (state = stateInitial, action: {type: string, payload : any}) =>
         case PSEUDO_ERROR:
             return {
                 ...state,
-                error: "affichage non réussi",
-
-            }
-            case INIT:
-            return {
-                ...state,
                 ...stateInitial,
+                error: "no user"
 
             }
         
@@ -90,7 +85,7 @@ export const logoutUser = () => (dispatch, getState) => {
         })
         .catch(err => {
             // inform my reducer there is an error
-               
+                
             dispatch(logoutError());
         });
 };
@@ -112,7 +107,4 @@ export const pseudoError = () => ({
     type: PSEUDO_ERROR
 });
 
-export const init = () => ({
-    type: INIT
-});
 export default reducer;

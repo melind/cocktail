@@ -22,7 +22,7 @@ const reducer = (state = stateInitial, action : {type: string, payload : any}) =
             return {
                 ...state,
                 confirm: false,
-                error: "An error occur."
+                error: "An error occur ?"
 
             }
 
