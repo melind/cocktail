@@ -22,7 +22,7 @@ const reducer = (state = stateInitial, action : {type: string, payload : any}) =
             return {
                 ...state,
                 confirm: false,
-                error: "An error occur. Please try again or ask for a new confirmation link."
+                error: "An error occur."
 
             }
 
@@ -54,8 +54,10 @@ export const confirm = (token) => (dispatch, getState) => {
         })
         .catch(err => {
             // inform my reducer there is an error
-            console.log( err || err.reponse.data.type)
-          
+            if(err && err.reponse.data.type ){
+                alert( err.reponse.data.type)
+            }
+            
             dispatch(confirmError());
         });
 };

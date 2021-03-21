@@ -92,7 +92,7 @@ var jsonwebtoken = require ('jsonwebtoken');
 
            const decodedToken = jsonwebtoken.verify(token,process.env.JWT_PRIVATE_KEY);
            const mail = decodedToken.mail
-          if (mail === process.env.MAIL) {
+          if (mail === process.env.MAIL_ADMIN) {
 
           
           //get user corresponding in data base for remove it

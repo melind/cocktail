@@ -94,7 +94,7 @@ var nodemailer = require ('nodemailer');
                       headers: {'Access-Control-Allow-Origin':URL_CORS, 'Access-Control-Allow-Headers':'Content-Type'},
                       from: 'no-reply-cocktail@pechemelba.fr', 
                       to: user.mail, 
-                      subject: 'Réinitialisation de votre mot de passe', 
+                      subject: 'Password Reset ', 
                       html: '<html><body>You recieve this e-mail beacause you (or someone else) ask to reset the password.</br></br>' +
                             'Please, click to the link, or past it in your browser to finish the process : ' +
                             '<a href="https:\/\/cocktail.pechemelba.fr\/new-password\/' + passwordResetTokenMail + ' ">Click here</a>.</br></br>' +

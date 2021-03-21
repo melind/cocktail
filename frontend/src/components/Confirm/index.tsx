@@ -6,12 +6,12 @@ const Confirm = (props, { init, confirmAccount,confirm, error}) => {
  
    
     let token = props.match.params.token;
-    props.confirmAccount(token);
+    
    
     
     useEffect(() => {
       props.init();
-     
+      props.confirmAccount(token);
       }, []);
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import { Link} from 'react-router-dom';
 import {Button, Input} from 'antd';
 import userAPI from '../../services/userAPI';
@@ -7,9 +7,6 @@ import userAPI from '../../services/userAPI';
 const Login = ({pseudo, password, onSubmit, loggedin, error, init}) => {
 
  
- setTimeout(function () {
-    init();
-  }, 1000);
 
   const URL = process.env.REACT_APP_URL_HOME;
   const [formState, setFormState] = useState({pseudo, password, loggedin});
@@ -45,7 +42,10 @@ const Login = ({pseudo, password, onSubmit, loggedin, error, init}) => {
      eye.classList.toggle("fa-eye-slash")
    }
  
-     
+   useEffect(() => {
+    init();
+    }, []);
+
     return (
 
         <div className="form"> 

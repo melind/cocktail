@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 //import './index.css';
 import { Link } from 'react-router-dom';
 import {Input} from 'antd';
 // component = function return element to display
 const UserName = ({pseudo, error, onSubmit, init}) => {
-    const URL_ACCOUNT = process.env.REACT_APP_URL_ACCOUNT;
-    init();
 
-   
+    const URL_ACCOUNT = process.env.REACT_APP_URL_ACCOUNT;
+    
 
     const [formState, setFormState] = useState({pseudo});
     const handleChange = (e) => {
@@ -32,6 +31,9 @@ const UserName = ({pseudo, error, onSubmit, init}) => {
         window.location.replace(URL_ACCOUNT);
      }
    
+     useEffect(() => {
+        init();
+        }, []);
 
     return (
 

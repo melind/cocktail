@@ -16,6 +16,7 @@ const reducer = (state = stateInitial, action: {type: string, payload : any}) =>
         case LOGOUT_SUCCESS: 
             return {
                 ...state, 
+                pseudo: '',
                 loggedout: true,
                 error: false
 
@@ -70,7 +71,23 @@ export const displayPseudo = () => (dispatch, getState) => {
         });
 };
 
+export const logoutUser = () => (dispatch, getState) => {
+    
 
+    // collect user info
+    return  userAPI.logOut()
+        .then( (res) => {
+            // inform my reducer this is a success 
+            //and take data from response of PSEUDOController.displayPSEUDO
+            
+            dispatch(logoutSuccess());
+        })
+        .catch(err => {
+            // inform my reducer there is an error
+               
+            dispatch(logoutError());
+        });
+};
 
 export const logoutSuccess = () => ({
     type: LOGOUT_SUCCESS,

@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 //import './index.css';
 import { Redirect, Link } from 'react-router-dom';
 import  displayError  from '../../lib/validationPassword';
 import {Input} from 'antd';
 // component = function return element to display
 const Password = ({password, error, onSubmit, init}) => {
+
     const URL_ACCOUNT = process.env.REACT_APP_URL_ACCOUNT;
-    init();
-
-
+ 
     const [formState, setFormState] = useState({password});
     const handleChange = (e) => {
         const name: string = e.target.name;
@@ -16,8 +15,7 @@ const Password = ({password, error, onSubmit, init}) => {
         
         setFormState({...formState, [name]: value}); // name_input : input_value
         
-     
-            
+   
     }
 
    const result = displayError(formState); 
@@ -55,7 +53,9 @@ const Password = ({password, error, onSubmit, init}) => {
         password_input.setAttribute('type', type);
         eye.classList.toggle("fa-eye-slash")
       }
-    
+    useEffect(() => {
+        init();
+        }, []);
     return (
 
         <div className="setAccount form">
