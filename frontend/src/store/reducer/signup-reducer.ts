@@ -31,7 +31,6 @@ const reducer = (state = stateInitial, action : {type: string, payload : any}) =
             return {
                 ...state,
                 ...stateInitial,
-                error: false
 
             }
 
