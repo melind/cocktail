@@ -8,7 +8,7 @@ const stateInitial = {
  export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
  export const LOGOUT_ERROR = "LOGOUT_ERROR";
  export const INIT = "INIT";
-  export const PSEUDO_SUCCESS = "PSEUDO_SUCCESS";
+export const PSEUDO_SUCCESS = "PSEUDO_SUCCESS";
  export const PSEUDO_ERROR = "PSEUDO_ERROR";
 
 const reducer = (state = stateInitial, action: {type: string, payload : any}) => {
@@ -39,6 +39,12 @@ const reducer = (state = stateInitial, action: {type: string, payload : any}) =>
             return {
                 ...state,
                 error: "affichage non réussi",
+
+            }
+            case INIT:
+            return {
+                ...state,
+                ...stateInitial,
 
             }
         
@@ -106,4 +112,7 @@ export const pseudoError = () => ({
     type: PSEUDO_ERROR
 });
 
+export const init = () => ({
+    type: INIT
+});
 export default reducer;
