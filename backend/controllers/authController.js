@@ -117,7 +117,7 @@ var nodemailer = require ('nodemailer');
                       from: 'no-reply-cocktail@pechemelba.fr', 
                       to: newUser.mail, 
                       subject: 'Valid account', 
-                      html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="http:\/\/cocktail.pechemelba.fr\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>'
+                      html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="http:\/\/cocktail.pechemelba.fr\/confirm\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>'
                     };
                     // @ts-ignore
                     transporter.sendMail(mailOptions, function (err) {
@@ -161,7 +161,7 @@ var nodemailer = require ('nodemailer');
 
 
     static async resendToken(request, response) {
-      
+
       const URL_CORS = process.env.URL_CORS;
       user_1.User.findOne({ mail: htmlspecialchars(request.body.mail) }, function (err, user) {
           if (!user) return response.status(400).json({ msg: 'We were unable to find a user with that email.' });
@@ -190,7 +190,7 @@ var nodemailer = require ('nodemailer');
                 from: 'no-reply-cocktail@pechemelba.fr', 
                 to: user.mail, 
                 subject: 'Validation of your account', 
-                html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="https:\/\/cocktail.pechemelba.fr\/confirmation\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>' 
+                html: '<html><body>Hello,</br></br>' + 'Please click to the link to valid your account: <a href="https:\/\/cocktail.pechemelba.fr\/confirm\/' + token.token + '">Click here </a>.</br></br>Cocktail </body></body>' 
               }; 
               // @ts-ignore
               transporter.sendMail(mailOptions, function (err) {
