@@ -59,14 +59,14 @@ var nodemailer = require ('nodemailer');
                                         });   
             }
          
-          if (regexMail) {
+         
 
             if (password.length <8){
             response.status(400).json({
                                          text: "Password must contains at least 8 characters"
                                         });
-          }
-          else { 
+        
+         
         /*------------------  Creation of a new user -- -----------*/
 
                 // crypt password  auto gen salt and hash
@@ -86,14 +86,14 @@ var nodemailer = require ('nodemailer');
                                                  })
             }
   
-            else {
+           
                   // Create a verification token for user
                   let tokenGen = bcrypt.hashSync(process.env.TOKEN_WORD, 10);
                   if (tokenGen.includes("/"||".")) {
                     tokenGen = bcrypt.hashSync(process.env.TOKEN_WORD, 10);
                  }
 
-                 else { 
+               
                   let token = new token_1.Token({ userId: newUser._id, token: tokenGen});
 
                   // Save the verification token
@@ -127,10 +127,10 @@ var nodemailer = require ('nodemailer');
                         response.status(200).json('A confirmation e-mail send ' + newUser.mail + '.');
                     });
                 });
-             }
-            }
+             
+            
         });
-      }
+      
      }
     }
     
@@ -252,10 +252,7 @@ var nodemailer = require ('nodemailer');
                     // create a session for the user
                // request.session.stocké cote server
                     // JSONWEBTOKEN and cookie stocké  cote client qui le renverra
-                if (pseudo && password) {
-                      
-                       
-                  
+       
                 // creation of an uuid : Universally Unique IDentifier
                 let csrf = Math.random().toString(36).substr(2, 9);
 
@@ -287,7 +284,7 @@ var nodemailer = require ('nodemailer');
                     
                 
                      
-        }   
+      
                  } 
         catch (error) { 
           response.status(400).json({
