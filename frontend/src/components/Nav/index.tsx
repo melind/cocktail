@@ -84,12 +84,12 @@ const Nav = () => {
                         <div className="search">
                           
                            <div className="search_info">
-                               <label htmlFor="cocktail_name"> Cocktail name : </label><Input className="input"  name="cocktail"  placeholder="cocktail name" onChange={handleChange_cocktail} value={inputValue_cocktail}  ></Input> 
+                               <label htmlFor="cocktail_name"> Cocktail name : </label><Input className="input_search"  name="cocktail"  placeholder="cocktail name" onChange={handleChange_cocktail} value={inputValue_cocktail}  ></Input> 
                                <Button    icon={<SearchOutlined />} htmlType="submit" onClick={handleSubmit_cocktail} >search</Button>
                            </div>
 
                            <div className="search_info">
-                               <label htmlFor="cocktail_ingredient"> Already have an ingredient ? </label><Input className="input"  name="name"  placeholder="ingredient" onChange={handleChange_ingredient} value={inputValue_ingredient}  ></Input> 
+                               <label htmlFor="cocktail_ingredient"> Already have an ingredient ? </label><Input className="input_search"  name="name"  placeholder="ingredient" onChange={handleChange_ingredient} value={inputValue_ingredient}  ></Input> 
                                <Button  icon={<SearchOutlined />} htmlType="submit" onClick={handleSubmit_ingredient} >search</Button>
                            </div>
 

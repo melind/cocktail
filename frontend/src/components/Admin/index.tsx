@@ -17,7 +17,7 @@ const Admin = () => {
         })
         .catch(err => {
 
-            
+            return err
         });
 
         setUsers(list);
@@ -29,9 +29,11 @@ const Admin = () => {
           
             userAPI.deleteOtherUser(user);
             message.success('Suppression réussie !');
-            setTimeout(function () {
+           /* setTimeout(function () {
                 document.location.reload();
          }, 1000);
+         
+         use tulip or record*/
 }
         useEffect(() => {
             usersList();
@@ -46,7 +48,7 @@ const Admin = () => {
         <div className="admin">
             <h1>Hello admin !</h1> <br/><br/> 
             <p>Liste des abonnés</p>
-             <ul>{users.map((result) => 
+             <ul>{users && users.map((result) => 
                  <li key={result._id}>{result.pseudo} delete account 
                   <Popconfirm
                         title="Delete account ?"

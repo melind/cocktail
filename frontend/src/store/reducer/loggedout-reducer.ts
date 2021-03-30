@@ -2,13 +2,14 @@ import userAPI from '../../services/userAPI';
 
 const stateInitial = { 
     loggedout: false,
-    pseudo: ''
+    pseudo: '',
+    error: ''
  };
 
  export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
  export const LOGOUT_ERROR = "LOGOUT_ERROR";
- export const INIT = "INIT";
-  export const PSEUDO_SUCCESS = "PSEUDO_SUCCESS";
+
+ export const PSEUDO_SUCCESS = "PSEUDO_SUCCESS";
  export const PSEUDO_ERROR = "PSEUDO_ERROR";
 
 const reducer = (state = stateInitial, action: {type: string, payload : any}) => {
@@ -37,7 +38,8 @@ const reducer = (state = stateInitial, action: {type: string, payload : any}) =>
         case PSEUDO_ERROR:
             return {
                 ...state,
-                error: "affichage non réussi",
+                ...stateInitial,
+                error: "no user"
 
             }
         
@@ -70,7 +72,23 @@ export const displayPseudo = () => (dispatch, getState) => {
         });
 };
 
+export const logoutUser = () => (dispatch, getState) => {
+    
 
+    // collect user info
+    return  userAPI.logOut()
+        .then( (res) => {
+            // inform my reducer this is a success 
+            //and take data from response of PSEUDOController.displayPSEUDO
+            
+            dispatch(logoutSuccess());
+        })
+        .catch(err => {
+            // inform my reducer there is an error
+                
+            dispatch(logoutError());
+        });
+};
 
 export const logoutSuccess = () => ({
     type: LOGOUT_SUCCESS,

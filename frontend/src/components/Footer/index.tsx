@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className="footer">
       
-      <p>Contact: cocktail@pechemelba.fr</p>
+      <p>Contact: melinda@pechemelba.fr</p>
       <Link to="/legal-mentions">Mentions Legales</Link>
     </div>
   );

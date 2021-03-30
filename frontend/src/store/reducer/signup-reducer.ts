@@ -5,6 +5,7 @@ const stateInitial = {
     pseudo: '',
     mail: '',
     password: '',
+    succeed: ''
  };
 
  export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
@@ -17,20 +18,19 @@ const reducer = (state = stateInitial, action : {type: string, payload : any}) =
             return {
                 ...state, // = stateInitial
                 ...action.payload,// = overwrite stateInitial with data frop appli
-                error: false
+                succeed: true
 
             }
         case SIGNUP_ERROR:
             return {
                 ...state,
-                error: "Inscription non réussi",
+                succeed: false,
 
             }
         case INIT:
             return {
                 ...state,
                 ...stateInitial,
-                error: false
 
             }
 
@@ -53,6 +53,7 @@ export const signUp = (formState) => (dispatch, getState) => {
         })
         .catch(err => {
             // inform my reducer there is an error
+            dispatch(signupError());
             if (err.response.data.text) {
                 alert(err.response.data.text);
                 }
@@ -60,10 +61,10 @@ export const signUp = (formState) => (dispatch, getState) => {
                 alert((err.response.data.error.keyValue.pseudo ||  err.response.data.error.keyValue.mail) + " existe déjà!");
                 }
                 else {
-
+                    return err
                 }
  
-            dispatch(signupError());
+            
         });
 };
 

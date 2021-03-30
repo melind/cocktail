@@ -10,6 +10,7 @@ import CocktailsAlcoholic from '../CocktailsAlcoholic';
 import CocktailsByIngredient from '../CocktailsByIngredient';
 import CocktailsNonAlcoholic from '../CocktailsNonAlcoholic';
 import CocktailInfo from '../CocktailInfo';
+import Confirm from '../../containers/Confirm';
 import Footer from '../Footer';
 import ForgetPassword from '../../containers/ForgetPassword';
 import Home from '../Home';
@@ -84,19 +85,21 @@ const App = () => {
       </header>
       <Nav />
       <Switch>
+        <Redirect exact strict from="/" to="home" />
         <PublicRoute restricted={false} path="/home" exact component={Home}/>
         <PublicRoute restricted={false} path="/cocktails_alcoholic" exact component={CocktailsAlcoholic}/>
         <PublicRoute restricted={false} path="/cocktails_non_alcoholic" exact component={CocktailsNonAlcoholic}/>
         <PublicRoute restricted={false} path="/cocktail/:cocktail_name" exact component={CocktailInfo}/>
         <PublicRoute restricted={false} path="/cocktails_by_ingredient/:ingredient" exact component={CocktailsByIngredient}/>
         <PrivateRoute path="/account" exact component={Account}/>
-        <PrivateRoute path="/admin" exact  component={Admin}/>
+        <PrivateRoute path="/admin-938-kml" exact  component={Admin}/>
         <PublicRoute restricted={true} path="/login" exact  component={Login}/>
         <PublicRoute restricted={true} path="/forget-passord" exact  component={ForgetPassword}/>
         <PublicRoute restricted={true} path="/new-password/:passwordResetToken" exact  component={NewPassword}/>
         <PrivateRoute path="/update-mail" exact component={Mail} />
         <PrivateRoute path="/update-password" exact component={Password} />
         <PublicRoute restricted={true} path="/signup" exact  component={Signup} />
+        <PublicRoute restricted={true} path="/confirm/:token" exact component={Confirm}/>
         <PublicRoute restricted={true} path="/resend-email" exact  component={ResendToken} />
         <PrivateRoute path="/update-pseudo" exact component={UserName} />
         <PublicRoute restricted={false} path="/legal-mentions" exact component={LegalMentions}/>

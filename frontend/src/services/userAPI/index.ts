@@ -13,11 +13,16 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export default {
 
+    confirm: (token) => { 
+        // @ts-ignore
+        axios.defaults.withCredentials = true;
+        return axios.get( API_URL + `/confirm/${token}`,{headers: headers})
+        }, 
     deleteUser: () => { 
         axios.defaults.withCredentials = true;
         return axios.delete( API_URL + '/delete-account', {headers: headers})
     },
-     deleteOtherUser: (user) => { 
+    deleteOtherUser: (user) => { 
         axios.defaults.withCredentials = true;
         return axios.delete( API_URL + `/delete-other-account/${user}`, {headers: headers})
     },
@@ -28,7 +33,7 @@ export default {
 
     isAdmin: () => { 
         axios.defaults.withCredentials = true;
-        return  axios.get( API_URL + '/admin')
+        return  axios.get( API_URL + '/admin-938-kml')
     },
 
     isAuth: () => {
@@ -56,11 +61,11 @@ export default {
         return axios.get( API_URL + '/logout')
     },
 
-    newPassword: (formState) => { 
+    newPassword: (token,formState) => { 
         // @ts-ignore
-        return axios.post( API_URL + '/new-password/:passwordResetToken', qs.stringify(formState))
-        },
-        
+        axios.defaults.withCredentials = true;
+        return axios.post( API_URL + `/new-password/${token}`, qs.stringify(formState),{headers: headers})
+        }, 
     pseudoUser: () => { 
         axios.defaults.withCredentials = true;
         return axios.get( API_URL + '/')
@@ -71,7 +76,8 @@ export default {
     },
     resetPassword: (formState) => {
         // @ts-ignore 
-        return axios.post( API_URL + '/reset-password', qs.stringify(formState))
+        axios.defaults.withCredentials = true;
+        return axios.post( API_URL + '/reset-password', qs.stringify(formState),{headers: headers})
     },
 
     signupUser: (formState) => {

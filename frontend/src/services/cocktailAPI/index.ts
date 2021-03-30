@@ -6,7 +6,7 @@ const headers = {
 };
 
 const API_URL = process.env.REACT_APP_API_URL;
-console.log("API_URL: ",API_URL);
+
 
 export default { 
 
@@ -31,11 +31,6 @@ export default {
     cocktailsNA: () => {
        axios.defaults.withCredentials = true;
        return axios.get( API_URL + '/cocktails_non_alcoholic')
-       },  
-/*
-    search: (search) => {
-     axios.defaults.withCredentials = true;
-     return axios.post( API_URL + '/home', qs.stringify(search),{headers: headers})
-    
-     }, */
+       }
+
 }

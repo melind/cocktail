@@ -10,7 +10,8 @@ const mapStateToProps =
    pseudo: state.account.pseudo, 
    mail: state.account.mail,
    password: state.account.password,
-   date: state.account.date
+   date: state.account.date,
+   error: state.account.error
 });
 
 const mapDispatchToProps = (dispatch) => ({

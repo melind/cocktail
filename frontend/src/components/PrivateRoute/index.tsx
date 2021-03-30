@@ -6,7 +6,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest} //contains the React Router props when the initial component is rendered
     render={props => ( 
-     userAPI.isAuth() ?  <Component {...props} /> : <Redirect to="/" />
+     userAPI.isAuth() ?  <Component {...props} /> : <Redirect to="/home" />
       
       )}
   />

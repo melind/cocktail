@@ -1,27 +1,28 @@
 import userAPI from '../../services/userAPI';
 
 const stateInitial = { 
-    password: '',
-    error:''
+   confirm: false,
+   error: false,
  };
 
- export const RESET_PASSWORD_SUCCESS = "ACCOUNT_SUCCESS";
- export const RESET_PASSWORD_ERROR = "ACCOUNT_ERROR";
+ export const CONFIRM_SUCCESS = "CONFIRM_SUCCESS";
+ export const CONFIRM_ERROR = "CONFIRM_ERROR";
  export const INIT = "INIT";
 
 const reducer = (state = stateInitial, action : {type: string, payload : any}) => {
     switch(action.type){
-        case RESET_PASSWORD_SUCCESS: 
+        case CONFIRM_SUCCESS: 
             return {
                 ...state, // = stateInitial
-                ...action.payload,// = overwrite stateInitial with data from appli
+                confirm: true,// = overwrite stateInitial with data from appli
                 error: false
 
             }
-        case RESET_PASSWORD_ERROR:
+        case CONFIRM_ERROR:
             return {
                 ...state,
-                error: true,
+                confirm: false,
+                error: "An error occur ?"
 
             }
 
@@ -40,24 +41,24 @@ const reducer = (state = stateInitial, action : {type: string, payload : any}) =
         /*-----------    redux thunk  -------------*/
         // action creator which return function
 
-export const newPassword = (token, formState) => (dispatch, getState) => {
+export const confirm = (token) => (dispatch, getState) => {
     // name of the input
   
     // axios collect post info from the user via name input
-    return  userAPI.newPassword(token,formState)
+    return  userAPI.confirm(token)
         .then( (res) => {
             // inform my reducer this is a success 
-            //and take data from response of accountController.updateAccount
-            
-            dispatch(resetPasswordSuccess(res.data));
+            //and take data from response of CONFIRMController.updateCONFIRM
+                
+                 dispatch(confirmSuccess(res.data || ""));
         })
         .catch(err => {
             // inform my reducer there is an error
-            console.log(err);
-            if (err.response.data) {
-                alert(err.response.data.msg);
-                }
-            dispatch(resetPasswordError());
+            if(err && err.reponse.data.type ){
+                alert( err.reponse.data.type)
+            }
+            
+            dispatch(confirmError());
         });
 };
 
@@ -68,18 +69,17 @@ export const newPassword = (token, formState) => (dispatch, getState) => {
 
 
 
-export const resetPasswordSuccess = (payload) => ({
-    type: RESET_PASSWORD_SUCCESS,
+export const confirmSuccess = (payload) => ({
+    type: CONFIRM_SUCCESS,
     payload
 });
 
-export const resetPasswordError = () => ({
-    type: RESET_PASSWORD_ERROR
+export const confirmError = () => ({
+    type: CONFIRM_ERROR
 });
 
 
 export const init = () => ({
     type: INIT
 });
-
 export default reducer;

@@ -7,10 +7,10 @@ import './index.css';
 
  
 
-const Account = ({display, pseudo, mail, password, date, onClick, init}) => {
+const Account = ({display, pseudo, mail, date, onClick, init}) => {
 
 display();
-const URL = process.env.REACT_APP_URL;
+const URL = process.env.REACT_APP_URL_HOME;
 date = date.slice(0, 10);
 
 
@@ -21,7 +21,7 @@ const handleDelete = () => {
         setTimeout(function () {
            userAPI.logOut();
            userAPI.logout();
-           window.location.replace(URL||"http://localhost:3000/home");
+           window.location.replace(URL);
          }, 1000);
 }
 
