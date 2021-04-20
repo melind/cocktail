@@ -26,8 +26,9 @@ const Login = ({pseudo, password, onSubmit, loggedin, error, init}) => {
     }
    if(loggedin) {
      //create local.sotorage
-     userAPI.login();
+     
      setTimeout(function () {
+      userAPI.login();
       window.location.replace(URL);
     }, 1000);
    }

@@ -96,7 +96,7 @@ const CocktailInfo = (props) => {
                                     </Col>
                                </Row>
                            
-                    
+                               {cocktail['strInstructions']}
 
                  </div>
                 

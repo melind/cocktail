@@ -31,10 +31,8 @@ const Signup = ({pseudo, mail, password, onSubmit, succeed, init}) => {
           
           if (result[0] === undefined && result[2] === undefined) { 
           onSubmit(formState);
-          if(succeed === true){ 
-            window.location.replace(URL);
-            }
-            else if(succeed === false) {
+          
+            if(succeed === false) {
               alert('signup failed')
             }
           }
@@ -44,6 +42,12 @@ const Signup = ({pseudo, mail, password, onSubmit, succeed, init}) => {
      
       } 
       
+      if(succeed === true){ 
+        setTimeout(function () {
+          window.location.replace(URL);
+        }, 1000);
+        }
+
       let password_input = document.getElementById("password") as HTMLInputElement;
       let confirm_password_input = document.getElementById("confirm_password") as HTMLInputElement;
     
