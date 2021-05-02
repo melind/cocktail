@@ -12,7 +12,7 @@ const Signup = ({pseudo, mail, password, onSubmit, succeed, init}) => {
     const [formState, setFormState] = useState({pseudo, mail, password});
     const [validateMail, setValidateMail] = useState(true); 
     const [validatePassword, setValidatePassword] = useState(true); 
-
+    console.log(URL, succeed)
     const handleChange = (e) => {
         const name: string = e.target.name;
         const value: string = e.target.value;
@@ -31,10 +31,8 @@ const Signup = ({pseudo, mail, password, onSubmit, succeed, init}) => {
           
           if (result[0] === undefined && result[2] === undefined) { 
           onSubmit(formState);
-          if(succeed === true){ 
-            window.location.replace(URL);
-            }
-            else if(succeed === false) {
+         
+           if(succeed === false) {
               alert('signup failed')
             }
           }
@@ -43,7 +41,11 @@ const Signup = ({pseudo, mail, password, onSubmit, succeed, init}) => {
          result[2] ? setValidatePassword(false) : setValidatePassword(true);
      
       } 
-      
+      if(succeed === true){ 
+        setTimeout(function () {
+          window.location.replace(URL);
+        }, 1000);
+        }
       let password_input = document.getElementById("password") as HTMLInputElement;
       let confirm_password_input = document.getElementById("confirm_password") as HTMLInputElement;
     

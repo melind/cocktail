@@ -100,10 +100,10 @@ export default class AuthController {
                   // Save the verification token
                   token.save(function (err) {
                     if (err) { 
-                      return response.status(500).json({ err }); 
+                      return response.status(500).json({  err }); 
                     }
-                    
-                    let transporter = nodemailer.createTransport({ 
+                    response.status(200).json('A confirmation e-mail send ' + newUser.mail + '.');
+                   /* let transporter = nodemailer.createTransport({ 
                     host: 'email-smtp.eu-west-2.amazonaws.com', 
                     auth: { user: process.env.AWS_ACCESS_KEY_ID, pass: process.env.AWS_SECRET_ACCESS_KEY } ,
                     port: 587,
@@ -125,7 +125,7 @@ export default class AuthController {
                           return response.status(500).json({ err}); 
                        }
                         response.status(200).json('A confirmation e-mail send ' + newUser.mail + '.');
-                    });
+                    });*/
                 });
              }
             

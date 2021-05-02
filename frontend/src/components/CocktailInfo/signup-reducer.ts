@@ -44,11 +44,11 @@ const reducer = (state = stateInitial, action : {type: string, payload : any}) =
 export const signUp = (formState) => (dispatch, getState) => {
     // name of the input
     // axios collect post info from the user via name input
-    console.log('reducstate',formState)
     return  userAPI.signupUser(formState)
         .then( res => {
             // inform my reducer this is a success 
             //and take data from response of auhtController.postSignup
+            
             dispatch(signupSuccess(res.data));
         })
         .catch(err => {
@@ -61,7 +61,7 @@ export const signUp = (formState) => (dispatch, getState) => {
                 alert((err.response.data.error.keyValue.pseudo ||  err.response.data.error.keyValue.mail) + " existe déjà!");
                 }
                 else {
-                    return    ""
+                    return err
                 }
  
             
