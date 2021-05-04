@@ -39,7 +39,7 @@ const App = () => {
     }, (60*60*1000));
 
 
-  
+  /*
  const displayAuth = () => {
        const auth = document.getElementsByClassName('auth')[0] as HTMLElement;
        const un = document.getElementsByClassName('un')[0] as HTMLElement;
@@ -56,7 +56,18 @@ const App = () => {
   useEffect(() => {
     displayAuth();
   }, [])
+  <div className="authentification">
 
+  <div className="un authentificated">
+   <Link to="/signup"> signup</Link >                
+   <Link to="/login"> login</Link >
+  </div>
+  
+  <div className=" auth authentificated">
+    < Loggedout/>
+  </div>
+</div>
+*/
   
   return (
     <div className="App">
@@ -68,17 +79,7 @@ const App = () => {
                 <img src={logo1} width="70" alt="pêche melba icone"/> Cocktail !!
            </div>
 
-           <div className="authentification">
-
-              <div className="un authentificated">
-               <Link to="/signup"> signup</Link >                
-               <Link to="/login"> login</Link >
-              </div>
-              
-              <div className=" auth authentificated">
-                < Loggedout/>
-              </div>
-           </div>
+          
                    
       </div>  
          
