@@ -1,0 +1,27 @@
+  
+import { connect } from 'react-redux';
+import Signup from '../components/Signup/index.jsx';
+import { signUp, init } from '../store/reducer/signup-reducer';
+
+
+
+const mapStateToProps =
+ 
+(state) => ({
+   pseudo: state.signup.pseudo, 
+   mail: state.signup.mail,
+   password: state.signup.password,
+   subscriber: state.signup.subscriber,
+   succeed: state.signup.succeed
+});
+
+const mapDispatchToProps = (dispatch) => ({
+   onSubmit: (formState) => {
+        dispatch(signUp(formState));// transfer input_name value ?
+    },
+    init: () => {
+        dispatch(init())
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
