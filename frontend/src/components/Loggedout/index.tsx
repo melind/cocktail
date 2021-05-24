@@ -6,7 +6,6 @@ import userAPI from '../../services/userAPI';
 const Loggedout = ({loggedout, onClick, pseudo, display, error}) => {
 
 
-console.log(loggedout)
 
   const URL = process.env.REACT_APP_URL_HOME;
   const logOut = () => {

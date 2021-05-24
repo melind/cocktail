@@ -76,7 +76,7 @@ const App = () => {
       <div className="brand-header">
 
            <div className="brand-name">
-                <img src={logo1} width="70" alt="pêche melba icone"/> Cocktail !!
+                <img src={logo1} width="70" alt="pêche melba icone"/>  Home Made Cocktail !! 
            </div>
 
           

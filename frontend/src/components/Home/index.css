@@ -1,23 +1,39 @@
-.home {
-  height: 491px;
-   
- }
 
 @media screen and (min-width: 1025px) {
 
 
-.home {
-  height: 55vh;
- 
-  
-}
-
-
-}
-
-
-.spin {
+  .home {
     height: 40%;
-    margin : 20%;
-}
-
+   
+    
+  }
+  
+  
+  }
+  
+  
+  .spin {
+      height: 40%;
+      margin : 20%;
+  }
+  
+  .welcome {
+    font-size: large;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .try{
+    font-size: large;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .webgl {
+    margin-bottom: 100px;
+  }
+  
+  .description {
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
