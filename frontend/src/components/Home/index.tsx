@@ -69,7 +69,7 @@ if (canvas){
  /**
   * Textures
   */
-  const bakedTexture = textureLoader.load('../../static/texture_cocktail.jpg')
+  const bakedTexture = textureLoader.load('../../texture_cocktail.jpg')
   bakedTexture.flipY = false
  
  /**
@@ -115,7 +115,7 @@ if (canvas){
   */
 
  gltfLoader.load(
-     '../../static/cocktail_scene_allin.glb',
+     '../../cocktail_scene_allin.glb',
     
      (gltf) => {
          /**
